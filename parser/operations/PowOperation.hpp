@@ -6,9 +6,10 @@
 class PowOperation : public Operation 
 {
     public:
-        double execute(const std::vector<double>& operands) const override 
+        double calculate(const std::vector<double>& operands) const override 
         {
-            if (operands.size() != 2) throw std::invalid_argument("There should be two arguments for 'pow'.");
+            if (operands.size() != 2) 
+                throw std::invalid_argument("There should be two arguments for 'pow'.");
             return std::pow(operands[0], operands[1]);
         }
         ~PowOperation() override {}

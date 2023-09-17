@@ -4,12 +4,12 @@
 #include <string>
 #include <vector>
 
-#include "Command.hpp"
+#include "../commands/Command.hpp"
 
 class CommandParser 
 {
     public:
-        static Command parseCommand(std::istream& inputStream);
+        static Command parse_command(std::istream& input_stream);
 
     private:
         using Tokens = std::vector<std::string>;

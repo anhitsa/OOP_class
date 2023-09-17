@@ -6,7 +6,7 @@
 class MultiplicationOperation : public Operation 
 {
     public:
-        double execute(const std::vector<double>& operands) const override 
+        double calculate(const std::vector<double>& operands) const override 
         {
             return std::accumulate(operands.begin(), operands.end(), 1.0, std::multiplies<double>());
         }

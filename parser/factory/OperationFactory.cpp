@@ -1,10 +1,10 @@
 #include "OperationFactory.hpp"
-#include "AdditionOperation.hpp"
-#include "SubtractionOperation.hpp"
-#include "MultiplicationOperation.hpp"
-#include "DivisionOperation.hpp"
-#include "PowOperation.hpp"
-#include "SqrtOperation.hpp"
+#include "../operations/AdditionOperation.hpp"
+#include "../operations/SubtractionOperation.hpp"
+#include "../operations/MultiplicationOperation.hpp"
+#include "../operations/DivisionOperation.hpp"
+#include "../operations/PowOperation.hpp"
+#include "../operations/SqrtOperation.hpp"
 
 OperationFactory::OperationFactory() 
 {
@@ -16,9 +16,9 @@ OperationFactory::OperationFactory()
     operations["sqrt"] = []() { return std::make_unique<SqrtOperation>(); };
 }
 
-std::unique_ptr<Operation> OperationFactory::createOperation(const Command& command) 
+std::unique_ptr<Operation> OperationFactory::create_operation(const Command& command) 
 {
-    auto it = operations.find(command.operationType);
+    auto it = operations.find(command.operation_type);
     if (it != operations.end()) 
     {
         return it->second();

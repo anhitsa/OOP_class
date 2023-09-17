@@ -8,14 +8,14 @@
 #include <string>
 #include <memory> // std::make_unique
 
-#include "Command.hpp"
-#include "Operation.hpp"
+#include "../commands/Command.hpp"
+#include "../operations/Operation.hpp"
 
 class OperationFactory 
 {
 public:
     OperationFactory();
-    std::unique_ptr<Operation> createOperation(const Command& command);
+    std::unique_ptr<Operation> create_operation(const Command& command);
 
 private:
     std::map<std::string, std::function<std::unique_ptr<Operation>()>> operations;

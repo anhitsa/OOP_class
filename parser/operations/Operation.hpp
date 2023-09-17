@@ -1,12 +1,12 @@
 #ifndef OPERATION_HPP
 #define OPERATION_HPP
 
-#include "OperationFactory.hpp"
+#include "../factory/OperationFactory.hpp"
 
 class Operation 
 {
     public:
-        virtual double execute(const std::vector<double>& operands) const = 0;
+        virtual double calculate(const std::vector<double>& operands) const = 0;
         virtual ~Operation() {}
 };
 

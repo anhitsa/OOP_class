@@ -3,14 +3,17 @@
 
 #include "CommandParser.hpp"
 
-Command CommandParser::parseCommand(std::istream& input_stream) 
+Command CommandParser::parse_command(std::istream& input_stream) 
 {
+    Command command;
     std::string input;
     std::getline(input_stream, input); 
     std::vector<std::string> tokens = CommandParser::tokenize(std::istringstream(input));
-    std::string operationType = tokens[0];
-    std::vector<double> operands = CommandParser::determine_operands(tokens);
-    return Command(operationType, operands);
+    if(tokens[0] == "create")
+        command.save_in_history =  true;
+    command.operation_type = (command.save_in_history) ? tokens[1] : tokens[0];
+    command.operands = CommandParser::determine_operands(tokens);
+    return command;
 }
 
 
@@ -28,11 +31,12 @@ CommandParser::Tokens CommandParser::tokenize(std::istringstream iss)
 std::vector<double> CommandParser::determine_operands(const CommandParser::Tokens tokens)
 {
     std::vector<double> operands;
-    for (size_t i = 1; i < tokens.size(); ++i) 
+    size_t first_idx = (tokens[0] == "create") ? 2 : 1;
+    for (size_t i = first_idx; i < tokens.size(); ++i) 
     {
         try 
         {
-            double operand = std::stof(tokens[i]);
+            double operand = std::stod(tokens[i]);
             operands.push_back(operand);
         } 
         catch (const std::exception& e) 
