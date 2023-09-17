@@ -16,6 +16,7 @@ This Parser is a C++ program that allows users to input commands and perform var
 The project is structured into several components:
 
 - CommandParser: Parses user commands and extracts operation type and operands.
+- CommandHistory: Contains saved commands. Adds and removes elements from the history of commands.
 - OperationFactory: Creates specific operation objects based on the parsed command.
 - Operation: Defines a common interface for all operations.
 - AdditionOperation, SubtractionOperation, and other operation types: Inherit from Operation and implement specific operations.
@@ -30,7 +31,7 @@ The project is structured into several components:
    git clone <repository-url>
 2. Build the project using a C++ compiler (e.g., g++ or clang++):
    ```bash
-   clang++ -g *.cpp -o main -std=c++20
+   clang++ -g -I/path_to_parser path_to_parser/**/*.cpp path_to_parser/*.cpp -o /path_to_parser/main -std=c++20
 3. Run the executable:
    ```bash
    ./main
@@ -40,6 +41,8 @@ The project is structured into several components:
 ## Usage
 
 - Enter mathematical commands, e.g., "add 3 4 5 6", "sub 10 2", "pow 2 6", etc.
+- To write a command in history later to be executed, type 'create' befor a command, e.g. "create add 3 4 5 6"
+- Use "run" to execute all the commands in history.
 - Use "quit" to exit the program.
 
 ## Example
@@ -55,6 +58,14 @@ The project is structured into several components:
 
     Enter a command: addbb 2 3 4 
     Error: Not a valid operationType
+
+    Enter a command: create add 3 4 5 6
+
+    Enter a command: create sub 10 2
+
+    Enter a command: run
+    add 3 4 5 6 Result: 18
+    sub 10 2 Result: 8
 
     Enter a command: quit
     quitting ...
