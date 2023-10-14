@@ -9,6 +9,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMainWindow>
+#include <QPushButton>
+#include <QTimer>
 #include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -22,17 +24,21 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void printToScreen(const Slide& slide);
+    static void exitApplication();
 
 public:
     Ui::MainWindow *ui;
     QLineEdit *inputBox;
+    QPushButton* submitButton;
 
 signals:
     void userInputReceived(const QString& input);
 
 public slots:
     void onSubmitClicked();
+
+private:
+    void createInputLayout(QVBoxLayout*);
 
 };
 

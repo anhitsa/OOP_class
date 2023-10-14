@@ -10,6 +10,7 @@ class Slide
 public:
     Slide() {}
     void addItem(Item& item);
+    Item& getItemByID(const Item::ID id);
 
 public:
     std::vector<Item> items;

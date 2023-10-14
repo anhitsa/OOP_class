@@ -9,19 +9,28 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     QVBoxLayout* layout = new QVBoxLayout;
-    inputBox = new QLineEdit(this);
-    layout->addWidget(inputBox);
-    QPushButton* submitButton = new QPushButton("Submit", this);
-    layout->addWidget(submitButton);
-
-    QWidget* centralWidget = new QWidget(this);
-    centralWidget->setLayout(layout);
-    setCentralWidget(centralWidget);
+    createInputLayout(layout);
 
     connect(submitButton, &QPushButton::clicked, this, &MainWindow::onSubmitClicked);
 
     setLayout(layout);
-    setWindowTitle("Application");
+    setWindowTitle("PowerPoint");
+}
+
+void MainWindow::createInputLayout(QVBoxLayout* layout)
+{
+    inputBox = new QLineEdit(this);
+    layout->addWidget(inputBox);
+
+    submitButton = new QPushButton("Submit", this);
+    layout->addWidget(submitButton);
+
+    QSpacerItem* spacer = new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout->addItem(spacer);
+
+    QWidget* centralWidget = new QWidget(this);
+    centralWidget->setLayout(layout);
+    setCentralWidget(centralWidget);
 }
 
 void MainWindow::onSubmitClicked()
@@ -35,7 +44,42 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::printToScreen(const Slide& slide)
-{
-    // to be implemented
+void MainWindow::exitApplication() {
+    QMessageBox exitingMessage;
+    exitingMessage.setText("Exiting PowerPoint...");
+    exitingMessage.show();
+
+    QTimer timer;
+    timer.setSingleShot(true);
+    QObject::connect(&timer, &QTimer::timeout, [&exitingMessage]() {
+        exitingMessage.close();
+    });
+    timer.start(2000);
+
+    QEventLoop loop;
+    QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    QApplication::quit();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

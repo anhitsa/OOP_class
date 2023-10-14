@@ -1,3 +1,6 @@
 #include "exitcommand.h"
 
-// to be implemented
+void ExitCommand::execute(Slide& slide)
+{
+    MainWindow::exitApplication();
+}

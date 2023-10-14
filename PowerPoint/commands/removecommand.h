@@ -7,7 +7,7 @@ class RemoveCommand: public Command
 {
 public:
     RemoveCommand()=default;
-    void execute(Slide&) override {} // to be implemented
+    void execute(Slide&) override;
 
 public:
     Item item;

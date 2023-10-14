@@ -23,6 +23,9 @@ public:
     Item(Coord top_left, Coord bottom_right);
     Item(Coord top_left, Length height, Length width);
     Item& operator=(const Item& other);
+    bool operator==(const Item& other) const {
+        return this->id == other.id;
+    }
     void setID(const ID);
 
 public:

@@ -2,15 +2,14 @@
 #define EXITCOMMAND_H
 
 #include "command.h"
+#include "../user_interface/mainwindow.h"
 
 class ExitCommand: public Command
 {
 public:
     ExitCommand()=default;
-    void execute(Slide&) override {} // to be implemented
+    void execute(Slide&) override;
 
-public:
-    Item item;
 };
 
 

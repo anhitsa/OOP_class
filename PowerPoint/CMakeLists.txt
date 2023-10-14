@@ -53,6 +53,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         builders/displaycommandbuilder.h builders/displaycommandbuilder.cpp
         builders/removecommandbuilder.h builders/removecommandbuilder.cpp
         builders/exitcommandbuilder.h builders/exitcommandbuilder.cpp
+        user_interface/itemdrawer.h user_interface/itemdrawer.cpp
 
 
 

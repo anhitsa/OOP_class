@@ -20,7 +20,6 @@ int Controller::runPowerPointLoop(int argc, char* argv[])
         std::istringstream stream(input.toStdString());
         std::unique_ptr<Command> command = commandParserRef.parse(stream);
         command->execute(slideRef);
-        //w.printToScreen(slideRef);
     });
 
     return a.exec();
