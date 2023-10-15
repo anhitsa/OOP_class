@@ -12,7 +12,7 @@
 class ExitCommandBuilder : public CommandBuilder
 {
 public:
-    ExitCommandBuilder() { exit_command = std::make_unique<ExitCommand>(); }
+    ExitCommandBuilder() : exit_command(std::make_unique<ExitCommand>()) {}
     std::unique_ptr<Command> getResult() override { return std::move(exit_command); }
 
 private:

@@ -6,11 +6,11 @@
 class ChangeCommand: public Command
 {
 public:
-    ChangeCommand()=default;
+    ChangeCommand() : item(std::make_unique<Item>()) {}
     void execute(Slide&) override;
 
 public:
-    Item item;
+    std::unique_ptr<Item> item;
 };
 
 #endif // CHANGECOMMAND_H

@@ -2,5 +2,5 @@
 
 void ExitCommand::execute(Slide& slide)
 {
-    MainWindow::exitApplication();
+    ApplicationWindow::exitApplication();
 }

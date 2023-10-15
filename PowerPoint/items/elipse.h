@@ -6,12 +6,8 @@
 class Elipse : public Item
 {
 public:
-    Elipse()
-    {
-        top_left.x = bottom_right.x = top_left.y = bottom_right.y = 0;
-        width = height = 1;
-        id = 0;
-    }
+    Elipse()=default;
+    void draw() override;
 };
 
 #endif // ELIPSE_H

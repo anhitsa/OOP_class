@@ -6,12 +6,8 @@
 class Triangle : public Item
 {
 public:
-    Triangle()
-    {
-        top_left.x = bottom_right.x = top_left.y = bottom_right.y = 0;
-        width = height = 1;
-        id = 0;
-    }
+    Triangle()=default;
+    void draw() override;
 };
 
 #endif // TRIANGLE_H

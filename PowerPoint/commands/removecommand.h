@@ -6,11 +6,11 @@
 class RemoveCommand: public Command
 {
 public:
-    RemoveCommand()=default;
+    RemoveCommand() : item(std::make_unique<Item>()) {}
     void execute(Slide&) override;
 
 public:
-    Item item;
+    std::unique_ptr<Item> item;
 };
 
 #endif // REMOVECOMMAND_H

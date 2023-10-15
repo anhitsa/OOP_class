@@ -2,7 +2,9 @@
 
 void DisplayCommand::execute(Slide& slide)
 {
-    item = slide.getItemByID(item.id);
-    itemDrawer.draw(item);
+    for(auto& item_: slide.items)
+    {
+        if(item_->id == item->id)
+            item_->draw();
+    }
 }
-

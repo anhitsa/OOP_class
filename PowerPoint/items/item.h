@@ -2,7 +2,8 @@
 #define ITEM_H
 
 #include <string>
-#include <utility> // std::make_pair
+
+class ApplicationWindow;
 
 class Item
 {
@@ -19,19 +20,21 @@ public:
     };
 
 public:
-    Item()=default;
+    Item();
     Item(Coord top_left, Coord bottom_right);
     Item(Coord top_left, Length height, Length width);
     Item& operator=(const Item& other);
-    bool operator==(const Item& other) const {
-        return this->id == other.id;
-    }
-    void setID(const ID);
+    bool operator==(const Item& other) const { return this->id == other.id; }
+    virtual void draw() {}
 
 public:
     Coord top_left, bottom_right;
     Length width, height;
     ID id;
+
+protected:
+    ApplicationWindow& appWindow;
+
 };
 
 #endif // ITEM_H

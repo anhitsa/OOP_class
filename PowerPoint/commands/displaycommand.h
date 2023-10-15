@@ -2,17 +2,15 @@
 #define DISPLAYCOMMAND_H
 
 #include "command.h"
-#include "../user_interface/itemdrawer.h"
 
 class DisplayCommand: public Command
 {
 public:
-    DisplayCommand()=default;
+    DisplayCommand() : item(std::make_unique<Item>()) {}
     void execute(Slide&) override;
 
 public:
-    Item item;
-    ItemDrawer itemDrawer;
+    std::unique_ptr<Item> item;
 };
 
 #endif // DISPLAYCOMMAND_H

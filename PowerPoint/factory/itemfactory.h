@@ -20,10 +20,10 @@ class ItemFactory
 {
 public:
     ItemFactory();
-    std::optional<Item> createItem(std::optional<std::string> item_name);
+    std::optional<std::unique_ptr<Item>> createItem(std::optional<std::string> item_name);
 
 private:
-    std::map<std::string, std::function<Item()>> items;
+    std::map<std::string, std::function<std::unique_ptr<Item>()>> items;
 };
 
 #endif // ITEMFACTORY_H

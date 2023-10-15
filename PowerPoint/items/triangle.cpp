@@ -1,3 +1,9 @@
 #include "triangle.h"
+#include "../user_interface/application_window.h"
 
-// to be implemented
+#include <QPainter>
+
+void Triangle::draw()
+{
+
+}

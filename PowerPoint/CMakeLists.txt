@@ -14,9 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        user_interface/mainwindow.cpp
-        user_interface/mainwindow.h
-        user_interface/mainwindow.ui
+        user_interface/application_window.cpp
+        user_interface/application_window.h
+        user_interface/appliction_window.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -53,7 +53,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         builders/displaycommandbuilder.h builders/displaycommandbuilder.cpp
         builders/removecommandbuilder.h builders/removecommandbuilder.cpp
         builders/exitcommandbuilder.h builders/exitcommandbuilder.cpp
-        user_interface/itemdrawer.h user_interface/itemdrawer.cpp
+
 
 
 

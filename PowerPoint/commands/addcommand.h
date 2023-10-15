@@ -13,12 +13,10 @@ class AddCommand: public Command
 {
 public:
     AddCommand()=default;
-    AddCommand(Item::Coord top_left, Item::Coord bottom_right);
-    AddCommand(Item::Coord top_left, Item::Length width, Item::Length height);
     void execute(Slide&) override;
 
 public:
-    Item item;
+    std::unique_ptr<Item> item;
     static int id_count;
 };
 

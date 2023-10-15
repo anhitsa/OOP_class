@@ -6,12 +6,8 @@
 class Rectangle : public Item
 {
 public:
-    Rectangle()
-    {
-        top_left.x = bottom_right.x = top_left.y = bottom_right.y = 0;
-        width = height = 1;
-        id = 0;
-    }
+    Rectangle()=default;
+    void draw() override;
 };
 
 #endif // RECTANGLE_H

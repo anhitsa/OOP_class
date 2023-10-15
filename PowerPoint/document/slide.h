@@ -9,11 +9,10 @@ class Slide
 {
 public:
     Slide() {}
-    void addItem(Item& item);
-    Item& getItemByID(const Item::ID id);
+    void addItem(std::unique_ptr<Item> item);
 
 public:
-    std::vector<Item> items;
+    std::vector<std::unique_ptr<Item>> items;
 };
 
 #endif // SLIDE_H

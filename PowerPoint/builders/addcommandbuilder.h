@@ -11,7 +11,7 @@ class AddCommandBuilder : public CommandBuilder
 {
 public:
     AddCommandBuilder() { add_command = std::make_unique<AddCommand>(); }
-    void addItem(const std::optional<Item> item) override;
+    void addItem(const std::optional<std::unique_ptr<Item>>) override;
     void addTopLeftCoord(const std::optional<std::string>) override;
     void addBottomRightCoord(const std::optional<std::string>) override;
     void addHeight(const std::optional<std::string>) override;

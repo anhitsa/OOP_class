@@ -2,7 +2,7 @@
 #define EXITCOMMAND_H
 
 #include "command.h"
-#include "../user_interface/mainwindow.h"
+#include "../user_interface/application_window.h"
 
 class ExitCommand: public Command
 {
