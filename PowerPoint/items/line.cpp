@@ -5,12 +5,9 @@
 
 void Line::draw()
 {
-    appWindow.pixmap = QPixmap(appWindow.size());
-    appWindow.pixmap.fill(Qt::white);
-
     QPainter painter(&appWindow.pixmap);
 
-    painter.setBrush(Qt::DiagCrossPattern);
+    painter.setBrush(Qt::Dense7Pattern);
     QPen pen;
     pen.setColor(Qt::green);
     pen.setWidth(5);
@@ -23,3 +20,4 @@ void Line::draw()
     appWindow.imageLabel->setPixmap(appWindow.pixmap.scaled(appWindow.size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     appWindow.imageLabel->show();
 }
+

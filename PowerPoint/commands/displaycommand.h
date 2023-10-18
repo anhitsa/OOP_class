@@ -6,11 +6,15 @@
 class DisplayCommand: public Command
 {
 public:
-    DisplayCommand() : item(std::make_unique<Item>()) {}
+    DisplayCommand()=default;
     void execute(Slide&) override;
 
 public:
-    std::unique_ptr<Item> item;
+    int id;
+
+private:
+    void displayOneItem(const Slide&);
+    void displayWholeSlide(const Slide&);
 };
 
 #endif // DISPLAYCOMMAND_H

@@ -1,6 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "coord.h"
+
 #include <string>
 
 class ApplicationWindow;
@@ -10,14 +12,6 @@ class Item
 public:
     using ID = int;
     using Length = int;
-    struct Coord
-    {
-        explicit Coord(std::string x, std::string y) : x(std::stoi(x)), y(std::stoi(y)) { }
-        explicit Coord(int x, int y) : x(x), y(y) {}
-        explicit Coord(std::string token);
-        Coord()=default;
-        int x, y;
-    };
 
 public:
     Item();

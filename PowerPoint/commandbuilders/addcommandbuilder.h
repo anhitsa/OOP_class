@@ -6,12 +6,14 @@
 #include "commandbuilder.h"
 
 #include <memory>
+#include <optional>
+#include <string>
 
 class AddCommandBuilder : public CommandBuilder
 {
 public:
-    AddCommandBuilder() { add_command = std::make_unique<AddCommand>(); }
-    void addItem(const std::optional<std::unique_ptr<Item>>) override;
+    AddCommandBuilder() : add_command(std::make_unique<AddCommand>()) {}
+    void addItemName(const std::optional<std::string>) override;
     void addTopLeftCoord(const std::optional<std::string>) override;
     void addBottomRightCoord(const std::optional<std::string>) override;
     void addHeight(const std::optional<std::string>) override;

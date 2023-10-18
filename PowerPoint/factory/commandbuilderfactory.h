@@ -1,12 +1,12 @@
 #ifndef COMMANDBUILDERFACTORY_H
 #define COMMANDBUILDERFACTORY_H
 
-#include "../builders/commandbuilder.h"
-#include "../builders/addcommandbuilder.h"
-#include "../builders/changecommandbuilder.h"
-#include "../builders/displaycommandbuilder.h"
-#include "../builders/exitcommandbuilder.h"
-#include "../builders/removecommandbuilder.h"
+#include "../commandbuilders/commandbuilder.h"
+#include "../commandbuilders/addcommandbuilder.h"
+#include "../commandbuilders/changecommandbuilder.h"
+#include "../commandbuilders/displaycommandbuilder.h"
+#include "../commandbuilders/exitcommandbuilder.h"
+#include "../commandbuilders/removecommandbuilder.h"
 
 #include <functional>
 #include <map>

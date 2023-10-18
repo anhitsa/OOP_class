@@ -7,9 +7,9 @@ void Elipse::draw()
 {
     QPainter painter(&appWindow.pixmap);
 
-    painter.setBrush(Qt::DiagCrossPattern);
+    painter.setBrush(Qt::Dense7Pattern);
     QPen pen;
-    pen.setColor(Qt::green);
+    pen.setColor(Qt::red);
     pen.setWidth(5);
     painter.setPen(pen);
 

@@ -11,7 +11,7 @@ class Command;
 class CommandBuilder
 {
 public:
-    virtual void addItem(const std::optional<std::unique_ptr<Item>>) {}
+    virtual void addItemName(const std::optional<std::string>) {}
     virtual void addTopLeftCoord(const std::optional<std::string>) {}
     virtual void addBottomRightCoord(const std::optional<std::string>) {}
     virtual void addHeight(const std::optional<std::string>) {}

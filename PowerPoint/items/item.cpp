@@ -26,16 +26,3 @@ Item& Item::operator=(const Item& other) {
 
     return *this;
 }
-
-Item::Coord::Coord(std::string token)
-{
-    size_t commaPos = token.find(',');
-
-    if (commaPos != std::string::npos)
-    {
-        x = std::stoi(token.substr(0, commaPos));
-        y = std::stoi(token.substr(commaPos + 1));
-    }
-    else
-        throw std::invalid_argument("Coordinate given in a wrong form.");
-}

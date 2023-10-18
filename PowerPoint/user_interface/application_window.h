@@ -1,9 +1,6 @@
 #ifndef APPLICATION_WINDOW_H
 #define APPLICATION_WINDOW_H
 
-#include "../input_handler/userinputhandler.h"
-#include "../document/slide.h"
-
 #include <QLabel>
 #include <QLineEdit>
 #include <QMainWindow>
@@ -19,6 +16,7 @@ public:
     static ApplicationWindow& getInstance();
     static void initialize() { static ApplicationWindow instance; }
     static void exitApplication();
+    void setBlankScreen();
 
 private:
     ApplicationWindow(QWidget *parent = nullptr);

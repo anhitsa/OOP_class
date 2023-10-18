@@ -2,11 +2,19 @@
 
 void ChangeCommand::execute(Slide& slide)
 {
-    for(auto& item_ : slide.items)
+    for(auto& item : slide.items)
     {
-        if(item_->id == item->id)
+        if(item->id == id)
         {
-            item_ = std::move(item);
+            if(top_left)
+                item->top_left = top_left;
+            if(bottom_right)
+                item->bottom_right = bottom_right;
+            if(height)
+                item->height = height;
+            if(width)
+                item->width = width;
+            slide.update();
             return;
         }
     }

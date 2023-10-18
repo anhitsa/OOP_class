@@ -30,7 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         commands/command.h
         parser/commandparser.h parser/commandparser.cpp
 
-        factory/itemfactory.h factory/itemfactory.cpp
+        factory/itembuilderfactory.h factory/itembuilderfactory.cpp
         items/triangle.h items/triangle.cpp
         items/rectangle.h items/rectangle.cpp
         items/circle.h items/circle.cpp
@@ -45,14 +45,23 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         parser/lexer.h parser/lexer.cpp
 
-        builders/addcommandbuilder.h builders/addcommandbuilder.cpp
-        builders/commanddirector.h builders/commanddirector.cpp
-        builders/commandbuilder.h
+        commandbuilders/addcommandbuilder.h commandbuilders/addcommandbuilder.cpp
+        commandbuilders/commanddirector.h commandbuilders/commanddirector.cpp
+        commandbuilders/commandbuilder.h
         factory/commandbuilderfactory.h factory/commandbuilderfactory.cpp
-        builders/changecommandbuilder.h builders/changecommandbuilder.cpp
-        builders/displaycommandbuilder.h builders/displaycommandbuilder.cpp
-        builders/removecommandbuilder.h builders/removecommandbuilder.cpp
-        builders/exitcommandbuilder.h builders/exitcommandbuilder.cpp
+        commandbuilders/changecommandbuilder.h commandbuilders/changecommandbuilder.cpp
+        commandbuilders/displaycommandbuilder.h commandbuilders/displaycommandbuilder.cpp
+        commandbuilders/removecommandbuilder.h commandbuilders/removecommandbuilder.cpp
+        commandbuilders/exitcommandbuilder.h commandbuilders/exitcommandbuilder.cpp
+        validator/validator.h validator/validator.cpp
+        itembuilders/itembuilder.h
+        itembuilders/circlebuilder.h itembuilders/circlebuilder.cpp
+        itembuilders/rectanglebuilder.h itembuilders/rectanglebuilder.cpp
+        itembuilders/elipsebuilder.h itembuilders/elipsebuilder.cpp
+        itembuilders/trianglebuilder.h itembuilders/trianglebuilder.cpp
+        itembuilders/linebuilder.h itembuilders/linebuilder.cpp
+        itembuilders/itemdirector.h itembuilders/itemdirector.cpp
+        items/coord.h items/coord.cpp
 
 
 

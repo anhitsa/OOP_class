@@ -82,3 +82,10 @@ void ApplicationWindow::resizeEvent(QResizeEvent* event)
     imageLabel->setPixmap(pixmap);
 }
 
+void ApplicationWindow::setBlankScreen()
+{
+    pixmap = QPixmap(size());
+    pixmap.fill(Qt::white);
+    imageLabel->setPixmap(pixmap.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+    imageLabel->show();
+}

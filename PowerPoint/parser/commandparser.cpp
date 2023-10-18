@@ -1,26 +1,27 @@
 #include "commandparser.h"
 
 #include <optional>
+#include "../commands/addcommand.h"
 
-std::unique_ptr<Command> CommandParser::parse(UserInputHandler::InputStream& input)
+std::unique_ptr<Command> CommandParser::parse(const QString& input)
 {
     Tokens tokens = lexer.tokenizeInput(input);
 
     std::string command_name = determineCommandName(tokens);
-    std::optional<std::string> item_name = determineValue(tokens, "--item");
-    std::optional<std::string> top_left = determineValue(tokens, "--top_left");
-    std::optional<std::string> bottom_right = determineValue(tokens, "--bottom_right");
-    std::optional<std::string> height = determineValue(tokens, "--height");
-    std::optional<std::string> width = determineValue(tokens, "--width");
-    std::optional<std::string> id = determineValue(tokens, "--id");
+    options["item"] = determineValue(tokens, "--item");
+    options["top_left"] = determineValue(tokens, "--top_left");
+    options["bottom_right"] = determineValue(tokens, "--bottom_right");
+    options["height"] = determineValue(tokens, "--height");
+    options["width"] = determineValue(tokens, "--width");
+    options["id"] = determineValue(tokens, "--id");
 
     std::unique_ptr<CommandBuilder> command_builder = command_builder_factory.createCommandBuilder(command_name);
-    return command_director.construct(std::move(command_builder), item_name, top_left, bottom_right, height, width, id);
+    return command_director.construct(std::move(command_builder), options);
 }
 
 std::string CommandParser::determineCommandName(const Tokens tokens)
 {
-    // TODO: validation
+    validator.verifyCommandName(tokens[0]);
     return tokens[0];
 }
 

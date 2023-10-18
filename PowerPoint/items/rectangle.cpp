@@ -7,13 +7,13 @@ void Rectangle::draw()
 {
     QPainter painter(&appWindow.pixmap);
 
-    painter.setBrush(Qt::DiagCrossPattern);
+    painter.setBrush(Qt::Dense7Pattern);
     QPen pen;
-    pen.setColor(Qt::green);
+    pen.setColor(Qt::yellow);
     pen.setWidth(5);
     painter.setPen(pen);
 
-    painter.drawRect(QRect(width, height, top_left.x, top_left.y));
+    painter.drawRect(QRect(top_left.x, top_left.y, width, height));
 
     painter.end();
 

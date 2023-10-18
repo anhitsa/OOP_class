@@ -1,9 +1,10 @@
 #include "lexer.h"
 
-#include <regex>
+#include <sstream>
 
-std::vector<std::string> Lexer::tokenizeInput(UserInputHandler::InputStream& stream)
+std::vector<std::string> Lexer::tokenizeInput(const QString& qstring)
 {
+    std::istringstream stream{qstring.toStdString()};
     std::vector<std::string> tokens;
     std::string token;
     while (stream >> token)

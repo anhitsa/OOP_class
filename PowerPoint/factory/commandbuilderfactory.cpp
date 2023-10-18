@@ -1,5 +1,7 @@
 #include "commandbuilderfactory.h"
 
+#include <iostream>
+
 CommandBuilderFactory::CommandBuilderFactory()
 {
     command_builders["add"] = []() -> std::unique_ptr<CommandBuilder> { return std::make_unique<AddCommandBuilder>(); };

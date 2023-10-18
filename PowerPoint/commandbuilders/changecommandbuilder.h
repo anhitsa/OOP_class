@@ -12,7 +12,7 @@
 class ChangeCommandBuilder : public CommandBuilder
 {
 public:
-    ChangeCommandBuilder() { change_command = std::make_unique<ChangeCommand>(); }
+    ChangeCommandBuilder() : change_command(std::make_unique<ChangeCommand>()) {}
     void addTopLeftCoord(const std::optional<std::string>) override;
     void addBottomRightCoord(const std::optional<std::string>) override;
     void addHeight(const std::optional<std::string>) override;

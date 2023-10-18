@@ -12,9 +12,12 @@
 class DisplayCommandBuilder : public CommandBuilder
 {
 public:
-    DisplayCommandBuilder() { display_command = std::make_unique<DisplayCommand>(); }
+    DisplayCommandBuilder() : display_command(std::make_unique<DisplayCommand>()) {}
     void addID(const std::optional<std::string>) override;
     std::unique_ptr<Command> getResult() override;
+
+public:
+    int id;
 
 private:
     std::unique_ptr<DisplayCommand> display_command;

@@ -6,7 +6,7 @@ void RemoveCommand::execute(Slide& slide)
 {
     for(auto& slideItem : slide.items)
     {
-        if(slideItem->id == item->id)
+        if(slideItem->id == id)
             slide.items.erase(std::remove(slide.items.begin(), slide.items.end(), slideItem), slide.items.end());
     }
 }

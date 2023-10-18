@@ -1,19 +1,20 @@
 #include "circle.h"
 #include "../user_interface/application_window.h"
 
+#include <QMessageBox>
 #include <QPainter>
 
 void Circle::draw()
 {
     QPainter painter(&appWindow.pixmap);
 
-    painter.setBrush(Qt::DiagCrossPattern);
+    painter.setBrush(Qt::Dense7Pattern);
     QPen pen;
-    pen.setColor(Qt::green);
+    pen.setColor(Qt::blue);
     pen.setWidth(5);
     painter.setPen(pen);
 
-    painter.drawEllipse(top_left.x, top_left.y, width, height);
+    painter.drawEllipse(top_left.x, top_left.y, width, width);
 
     painter.end();
 

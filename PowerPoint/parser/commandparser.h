@@ -1,13 +1,15 @@
 #ifndef COMMANDPARSER_H
 #define COMMANDPARSER_H
 
-#include "../builders/commanddirector.h"
+#include "../commandbuilders/commanddirector.h"
 #include "../commands/command.h"
 #include "../factory/commandbuilderfactory.h"
 #include "lexer.h"
-#include "../input_handler/userinputhandler.h"
+#include "../validator/validator.h"
 
+#include <map>
 #include <memory>
+#include <QString>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -16,7 +18,7 @@ class CommandParser
 {
 public:
     CommandParser()=default;
-    std::unique_ptr<Command> parse(UserInputHandler::InputStream&);
+    std::unique_ptr<Command> parse(const QString&);
 
 private:
     using Tokens = std::vector<std::string>;
@@ -29,6 +31,8 @@ private:
     Lexer lexer;
     CommandBuilderFactory command_builder_factory;
     CommandDirector command_director;
+    Validator validator;
+    std::map<std::string, std::optional<std::string>> options;
 
 };
 

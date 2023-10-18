@@ -12,8 +12,9 @@
 class RemoveCommandBuilder : public CommandBuilder
 {
 public:
-    RemoveCommandBuilder() { remove_command = std::make_unique<RemoveCommand>(); }
-    std::unique_ptr<Command> getResult() override { return std::move(remove_command); } // TODO: implement
+    RemoveCommandBuilder() : remove_command(std::make_unique<RemoveCommand>()) {}
+    std::unique_ptr<Command> getResult() override;
+    void addID(const std::optional<std::string>) override;
 
 private:
     std::unique_ptr<RemoveCommand> remove_command;
