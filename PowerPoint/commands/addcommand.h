@@ -2,9 +2,6 @@
 #define ADDCOMMAND_H
 
 #include "command.h"
-#include "../factory/itembuilderfactory.h"
-#include "../itembuilders/itembuilder.h"
-#include "../itembuilders/itemdirector.h"
 #include "../parser/lexer.h"
 
 #include <memory>
@@ -16,15 +13,16 @@ class AddCommand: public Command
 {
 public:
     AddCommand()=default;
-    void execute(Slide&) override;
+    AddCommand(std::shared_ptr<Target>);
+    void execute() override;
 
 public:
-    ItemBuilderFactory item_builder_factory;
-    ItemDirector item_director;
-    static int id_count;
-    Coord top_left, bottom_right;
-    Item::Length width, height;
-    std::string item_name;
+    static int slideIdCount;
+    static int itemIdCount;
+
+private:
+    std::shared_ptr<Target> target;
+    std::shared_ptr<Container> container;
 
 };
 

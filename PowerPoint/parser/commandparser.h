@@ -1,10 +1,10 @@
 #ifndef COMMANDPARSER_H
 #define COMMANDPARSER_H
 
-#include "../commandbuilders/commanddirector.h"
 #include "../commands/command.h"
-#include "../factory/commandbuilderfactory.h"
+#include "../factory/commandfactory.h"
 #include "lexer.h"
+#include "../document/target.h"
 #include "../validator/validator.h"
 
 #include <map>
@@ -29,8 +29,7 @@ private:
 
 private:
     Lexer lexer;
-    CommandBuilderFactory command_builder_factory;
-    CommandDirector command_director;
+    CommandFactory command_factory;
     Validator validator;
     std::map<std::string, std::optional<std::string>> options;
 

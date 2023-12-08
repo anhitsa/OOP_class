@@ -8,7 +8,7 @@ class ExitCommand: public Command
 {
 public:
     ExitCommand()=default;
-    void execute(Slide&) override;
+    void execute() override;
 
 };
 

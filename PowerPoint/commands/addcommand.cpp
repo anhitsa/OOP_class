@@ -1,15 +1,16 @@
 #include "addcommand.h"
-#include "../items/item.h"
+#include "../actions/commandaction.h"
+#include "../actions/addremoveaction.h"
 
-int AddCommand::id_count = 0;
+#include <memory>
 
-void AddCommand::execute(Slide& slide)
+AddCommand::AddCommand(std::shared_ptr<Target> target)
+    : target(target) {}
+
+void AddCommand::execute()
 {
-    std::unique_ptr<ItemBuilder> item_builder = item_builder_factory.createItemBuilder(item_name);
-    auto item =  item_director.construct(std::move(item_builder), top_left, std::make_optional<Coord>(bottom_right),
-                                        std::make_optional<Item::Length>(height), std::make_optional<Item::Length>(width), ++id_count);
-
-    slide.items.push_back(std::move(item));
+    std::shared_ptr<Container> container = determineContainer();
+    std::shared_ptr<CommandAction> action = std::make_shared<AddRemoveAction>(target, container);
+    action->execute();
+    commandHistory.push(action);
 }
-
-

@@ -12,13 +12,13 @@ void DisplayCommand::displayOneItem(const Slide& slide)
 {
     for(auto& item: slide.items)
     {
-        if(item->id == id)
-            item->draw();
+        if(item.id == id)
+            itemRenderer.drawItem(item);
     }
 }
 
 void DisplayCommand::displayWholeSlide(const Slide& slide)
 {
     for(auto& item: slide.items)
-        item->draw();
+        itemRenderer.drawItem(item);
 }

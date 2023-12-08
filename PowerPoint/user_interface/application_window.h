@@ -1,6 +1,8 @@
 #ifndef APPLICATION_WINDOW_H
 #define APPLICATION_WINDOW_H
 
+#include "uicomponent.h"
+
 #include <QLabel>
 #include <QLineEdit>
 #include <QMainWindow>
@@ -8,22 +10,22 @@
 #include <QTimer>
 #include <QVBoxLayout>
 
-class ApplicationWindow : public QMainWindow
+class ApplicationWindow : public QMainWindow, public UIComponent
 {
     Q_OBJECT
 
 public:
     static ApplicationWindow& getInstance();
-    static void initialize() { static ApplicationWindow instance; }
-    static void exitApplication();
-    void setBlankScreen();
+    void static initialize() { static ApplicationWindow instance; }
+    void static exitApplication();
+    void setBlankScreen() override;
 
 private:
     ApplicationWindow(QWidget *parent = nullptr);
     ~ApplicationWindow() {}
     ApplicationWindow(const ApplicationWindow&) = delete;
     ApplicationWindow& operator=(const ApplicationWindow&) = delete;
-    void createUI();
+    void createUI() override;
 
 public slots:
     void onSubmitClicked();

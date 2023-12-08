@@ -1,22 +1,31 @@
 #include "commandparser.h"
+#include "../commands/addcommand.h"
 
 #include <optional>
-#include "../commands/addcommand.h"
+
 
 std::unique_ptr<Command> CommandParser::parse(const QString& input)
 {
     Tokens tokens = lexer.tokenizeInput(input);
-
     std::string command_name = determineCommandName(tokens);
-    options["item"] = determineValue(tokens, "--item");
-    options["top_left"] = determineValue(tokens, "--top_left");
-    options["bottom_right"] = determineValue(tokens, "--bottom_right");
-    options["height"] = determineValue(tokens, "--height");
-    options["width"] = determineValue(tokens, "--width");
-    options["id"] = determineValue(tokens, "--id");
 
-    std::unique_ptr<CommandBuilder> command_builder = command_builder_factory.createCommandBuilder(command_name);
-    return command_director.construct(std::move(command_builder), options);
+    auto optionStart = std::find_if(tokens.begin(), tokens.end(), [](const auto& token) {
+        return token.find("--") == 0;
+    });
+
+    if (optionStart != tokens.end())
+        extractOptions(optionStart, std::prev(tokens.end()));
+
+    return command_factory.createCommand(command_name, options);
+}
+
+void CommandParser::extractOptions(Tokens::iterator start, Tokens::iterator end)
+{
+    for (auto it = start; it != end; ++it)
+    {
+        std::string key = it->substr(2);
+        options[key] = std::next(it)->substr(2);
+    }
 }
 
 std::string CommandParser::determineCommandName(const Tokens tokens)

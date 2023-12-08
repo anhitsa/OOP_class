@@ -13,6 +13,7 @@ ApplicationWindow::ApplicationWindow(QWidget *parent)
     connect(submitButton, &QPushButton::clicked, this, &ApplicationWindow::onSubmitClicked);
     setLayout(layout);
     setWindowTitle("PowerPoint");
+    setAcceptDrops(true);
 }
 
 void ApplicationWindow::createUI() {

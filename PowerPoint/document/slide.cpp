@@ -1,14 +1,15 @@
 #include "slide.h"
 
-void Slide::addItem(std::unique_ptr<Item> item)
+#include <memory>
+
+void Slide::addTarget(const std::shared_ptr<Target>& target) override
 {
-    items.push_back(std::move(item));
+    targets.push_back(target);
 }
 
-void Slide::update()
+void Slide::removeTarget(const std::shared_ptr<Target>& target) override
 {
-    ApplicationWindow& appWin = ApplicationWindow::getInstance();
-    appWin.setBlankScreen();
-    for(auto& item: items)
-        item->draw();
+    auto it = std::find(targets.begin(), targets.end(), target);
+    if (it != targets.end())
+        targets.erase(it);
 }

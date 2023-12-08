@@ -26,16 +26,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         controller/controller.h controller/controller.cpp
         document/document.h document/document.cpp
         document/slide.h document/slide.cpp
-        items/item.h items/item.cpp
+
         commands/command.h
         parser/commandparser.h parser/commandparser.cpp
 
-        factory/itembuilderfactory.h factory/itembuilderfactory.cpp
-        items/triangle.h items/triangle.cpp
-        items/rectangle.h items/rectangle.cpp
-        items/circle.h items/circle.cpp
-        items/elipse.h items/elipse.cpp
-        items/line.h items/line.cpp
+
+
+
+
+
+
 
         commands/addcommand.h commands/addcommand.cpp
         commands/removecommand.h commands/removecommand.cpp
@@ -45,23 +45,37 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         parser/lexer.h parser/lexer.cpp
 
-        commandbuilders/addcommandbuilder.h commandbuilders/addcommandbuilder.cpp
-        commandbuilders/commanddirector.h commandbuilders/commanddirector.cpp
-        commandbuilders/commandbuilder.h
-        factory/commandbuilderfactory.h factory/commandbuilderfactory.cpp
-        commandbuilders/changecommandbuilder.h commandbuilders/changecommandbuilder.cpp
-        commandbuilders/displaycommandbuilder.h commandbuilders/displaycommandbuilder.cpp
-        commandbuilders/removecommandbuilder.h commandbuilders/removecommandbuilder.cpp
-        commandbuilders/exitcommandbuilder.h commandbuilders/exitcommandbuilder.cpp
+
+
+
+        factory/commandfactory.h factory/commandfactory.cpp
+
+
+
+
         validator/validator.h validator/validator.cpp
-        itembuilders/itembuilder.h
-        itembuilders/circlebuilder.h itembuilders/circlebuilder.cpp
-        itembuilders/rectanglebuilder.h itembuilders/rectanglebuilder.cpp
-        itembuilders/elipsebuilder.h itembuilders/elipsebuilder.cpp
-        itembuilders/trianglebuilder.h itembuilders/trianglebuilder.cpp
-        itembuilders/linebuilder.h itembuilders/linebuilder.cpp
-        itembuilders/itemdirector.h itembuilders/itemdirector.cpp
-        items/coord.h items/coord.cpp
+
+
+
+
+
+
+
+
+        user_interface/draggableitemhandler.h user_interface/draggableitemhandler.cpp
+        user_interface/uicomponent.h
+        commands/savecommand.h commands/savecommand.cpp
+        user_interface/itemrenderer.h user_interface/itemrenderer.cpp
+        items/target.h
+        commandHistory/commandhistory.h commandHistory/commandhistory.cpp
+        commandHistory/stackcommandhistory.h commandHistory/stackcommandhistory.cpp
+        actions/commandaction.h
+        actions/addremoveaction.h actions/addremoveaction.cpp
+        document/container.h document/container.cpp
+        document/item.h document/item.cpp
+        document/coord.h document/coord.cpp
+        document/target.h
+
 
 
 

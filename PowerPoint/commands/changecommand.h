@@ -8,12 +8,8 @@ class ChangeCommand: public Command
 {
 public:
     ChangeCommand()=default;
-    void execute(Slide&) override;
+    void execute() override;
 
-public:
-    Coord top_left, bottom_right;
-    Item::Length width, height;
-    int id;
 };
 
 #endif // CHANGECOMMAND_H

@@ -14,12 +14,9 @@ int Controller::runPowerPointLoop(int argc, char* argv[])
     appWindow.show();
     Slide slide;
 
-    auto& commandParserRef = commandParser;
-    auto& slideRef = slide;
-
-    QObject::connect(&appWindow, &ApplicationWindow::userInputReceived, [&](const QString& input){
-        std::unique_ptr<Command> command = commandParserRef.parse(input);
-        command->execute(slideRef);
+    QObject::connect(&appWindow, &ApplicationWindow::userInputReceived, [this, &slide](const QString& input){
+        std::unique_ptr<Command> command = commandParser.parse(input);
+        command->execute();
     });
 
     return a.exec();

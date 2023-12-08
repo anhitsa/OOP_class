@@ -7,9 +7,8 @@ class RemoveCommand: public Command
 {
 public:
     RemoveCommand()=default;
-    void execute(Slide&) override;
-public:
-    int id;
+    void execute() override;
+
 };
 
 #endif // REMOVECOMMAND_H

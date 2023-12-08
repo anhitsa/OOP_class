@@ -12,7 +12,7 @@ class Command
 {
 public:
     virtual ~Command() = default;
-    virtual void execute(Slide&) = 0;
+    virtual void execute() = 0;
 };
 
 #endif // COMMAND_H

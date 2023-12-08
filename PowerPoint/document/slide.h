@@ -1,20 +1,22 @@
 #ifndef SLIDE_H
 #define SLIDE_H
 
-#include "../items/item.h"
-#include "../user_interface/application_window.h"
+#include "container.h"
+#include "target.h"
 
 #include <vector>
 
-class Slide
+
+class Slide : public Target, public Container
 {
 public:
     Slide()=default;
-    void addItem(std::unique_ptr<Item> item);
-    void update();
+    void addTarget(const std::shared_ptr<Target>&) override;
+    void removeTarget(const std::shared_ptr<Target>&) override;
 
-public:
-    std::vector<std::unique_ptr<Item>> items;
+private:
+    std::vector<std::shared_ptr<Target>> targets;
+
 };
 
 #endif // SLIDE_H
