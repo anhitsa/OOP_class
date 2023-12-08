@@ -31,7 +31,7 @@ private:
     Lexer lexer;
     CommandFactory command_factory;
     Validator validator;
-    std::map<std::string, std::optional<std::string>> options;
+    std::unordered_map<std::string, std::string> options;
 
 };
 

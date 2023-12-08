@@ -2,12 +2,11 @@
 #define CHANGECOMMAND_H
 
 #include "command.h"
-#include "../items/item.h"
 
 class ChangeCommand: public Command
 {
 public:
-    ChangeCommand()=default;
+    ChangeCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
 };

@@ -12,15 +12,13 @@
 class AddCommand: public Command
 {
 public:
-    AddCommand()=default;
-    AddCommand(std::shared_ptr<Target>);
+    AddCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
-public:
+private:
+    std::unordered_map<std::string, std::string> options;
     static int slideIdCount;
     static int itemIdCount;
-
-private:
     std::shared_ptr<Target> target;
     std::shared_ptr<Container> container;
 

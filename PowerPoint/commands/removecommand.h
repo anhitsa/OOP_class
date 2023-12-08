@@ -6,7 +6,7 @@
 class RemoveCommand: public Command
 {
 public:
-    RemoveCommand()=default;
+    RemoveCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
 };

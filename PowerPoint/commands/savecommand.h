@@ -8,7 +8,7 @@
 class SaveCommand: public Command
 {
 public:
-    SaveCommand()=default;
+    SaveCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
 public:

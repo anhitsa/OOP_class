@@ -1,6 +1,6 @@
 #include "changecommand.h"
 
-void ChangeCommand::execute(Slide& slide)
+void ChangeCommand::execute()
 {
     for(auto& item : slide.items)
     {

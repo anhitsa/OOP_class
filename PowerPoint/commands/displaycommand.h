@@ -7,7 +7,7 @@
 class DisplayCommand: public Command
 {
 public:
-    DisplayCommand()=default;
+    DisplayCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
 private:
