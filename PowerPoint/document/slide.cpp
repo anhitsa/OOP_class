@@ -28,3 +28,8 @@ void Slide::changeParameters(std::unordered_map<std::string, std::string> option
 {
 
 }
+
+void Slide::undoParametersChange()
+{
+
+}

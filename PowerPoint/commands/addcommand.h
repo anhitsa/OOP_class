@@ -18,6 +18,8 @@ public:
 
 private:
     std::shared_ptr<Target> createTarget();
+    std::shared_ptr<Container> createContainer(const std::shared_ptr<Target>&);
+    std::shared_ptr<Target> createItem();
 
 private:
     std::unordered_map<std::string, std::string> options;

@@ -15,6 +15,7 @@ public:
         : target(target), options(options) {}
 
     void execute() override;
+    void undo() override;
 
 private:
     std::shared_ptr<Target> target;

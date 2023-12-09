@@ -22,6 +22,7 @@ Item::Item(std::string kind, Coord top_left, Coord bottom_right, Length height, 
 
 void Item::changeParameters(std::unordered_map<std::string, std::string> options)
 {
+    saveParameters();
     std::unordered_map<std::string, std::function<void(const std::string&)>> parameterMap = {
         {"height", [this](const std::string& value) { height = std::stoi(value); }},
         {"width", [this](const std::string& value) { width = std::stoi(value); }},
@@ -37,7 +38,84 @@ void Item::changeParameters(std::unordered_map<std::string, std::string> options
     }
 }
 
-Item& Item::operator=(const Item& other) {
+void Item::undoParametersChange()
+{
+    top_left = prevParameters["top_left"];
+    bottom_right = prevParameters["bottom_right"];
+    height = prevParameters["height"];
+    width = prevParameters["width"];
+}
+
+void Item::saveParameters()
+{
+    prevParameters["top_left"] = top_left;
+    prevParameters["bottom_right"] = bottom_right;
+    prevParameters["height"] = height;
+    prevParameters["width"] = width;
+}
+
+void Item::setKind(const std::string& newKind)
+{
+    kind = newKind;
+}
+
+const std::string& Item::getKind() const
+{
+    return kind;
+}
+
+void Item::setTopLeft(const Coord& newTopLeft)
+{
+    top_left = newTopLeft;
+}
+
+const Coord& Item::getTopLeft() const
+{
+    return top_left;
+}
+
+void Item::setBottomRight(const Coord& newBottomRight)
+{
+    bottom_right = newBottomRight;
+}
+
+const Coord& Item::getBottomRight() const
+{
+    return bottom_right;
+}
+
+void Item::setHeight(Length newHeight)
+{
+    height = newHeight;
+}
+
+Length Item::getHeight() const
+{
+    return height;
+}
+
+void Item::setWidth(Length newWidth)
+{
+    width = newWidth;
+}
+
+Length Item::getWidth() const
+{
+    return width;
+}
+
+void Item::setId(int newId)
+{
+    id = newId;
+}
+
+int Item::getId() const
+{
+    return id;
+}
+
+Item& Item::operator=(const Item& other)
+{
     if (this == &other)
         return *this;
 

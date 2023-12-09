@@ -1,6 +1,6 @@
 #include "displaycommand.h"
 
-void DisplayCommand::execute(Slide& slide)
+void DisplayCommand::execute()
 {
     if(id)
         displayOneItem(slide);

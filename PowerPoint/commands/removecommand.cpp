@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-void RemoveCommand::execute(Slide& slide)
+void RemoveCommand::execute()
 {
     slide.items.erase(std::remove_if(slide.items.begin(), slide.items.end(),
                                      [this](const Item& slideItem) {

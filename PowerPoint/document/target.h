@@ -8,6 +8,7 @@ class Target
 public:
     virtual ~Target()=default;
     virtual void changeParameters(std::unordered_map<std::string, std::string> options) = 0;
+    virtual void undoParametersChange() = 0;
 };
 
 #endif // TARGET_H

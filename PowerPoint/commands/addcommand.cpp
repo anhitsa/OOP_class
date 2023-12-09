@@ -1,6 +1,7 @@
 #include "addcommand.h"
 #include "../actions/commandaction.h"
 #include "../actions/addremoveaction.h"
+#include "../document/document.h"
 #include "../document/slide.h"
 
 #include <memory>
@@ -10,6 +11,7 @@ AddCommand::AddCommand(std::unordered_map<std::string, std::string> options)
 
 void AddCommand::execute()
 {
+    Document& document = Document::getInstance();
     std::shared_ptr<Target> target = createTarget();
     std::shared_ptr<Container> container = createContainer(target);
 
@@ -31,6 +33,7 @@ std::shared_ptr<Target> AddCommand::createTarget()
 }
 
 std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Target>& target) {
+    Document& document = Document::getInstance();
     if (std::dynamic_pointer_cast<Item>(target))
     {
         if (options.count("slide_id"))
@@ -46,7 +49,7 @@ std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Tar
         return std::dynamic_pointer_cast<Container>(std::make_shared<Document>(document));
 }
 
-std::shared_ptr<Target> AddCommand::createItem(const std::unordered_map<std::string, std::string>& options)
+std::shared_ptr<Target> AddCommand::createItem()
 {
     std::string kind = options.at("kind");
     Coord top_left = Coord(options.at("top_left"));

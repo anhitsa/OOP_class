@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <string>
 
-void SaveCommand::execute(Slide& slide)
+void SaveCommand::execute()
 {
     std::ofstream slideYaml(path, std::ofstream::trunc);
     std::string contents;

@@ -14,6 +14,7 @@ public:
     void addTarget(const std::shared_ptr<Target>&) override;
     void removeTarget(const std::shared_ptr<Target>&) override;
     void changeParameters(std::unordered_map<std::string, std::string> options) override;
+    void undoParametersChange() override;
 
 private:
     std::vector<std::shared_ptr<Target>> targets;
