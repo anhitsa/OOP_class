@@ -3,7 +3,8 @@
 
 #include "target.h"
 
-class Container {
+class Container
+{
 public:
     virtual ~Container() = default;
     virtual void addTarget(const std::shared_ptr<Target>& target) = 0;

@@ -20,6 +20,23 @@ Item::Item(std::string kind, Coord top_left, Coord bottom_right, Length height, 
     kind(kind), top_left(top_left), bottom_right(bottom_right),
     height(height), width(width), id(id) {}
 
+void Item::changeParameters(std::unordered_map<std::string, std::string> options)
+{
+    std::unordered_map<std::string, std::function<void(const std::string&)>> parameterMap = {
+        {"height", [this](const std::string& value) { height = std::stoi(value); }},
+        {"width", [this](const std::string& value) { width = std::stoi(value); }},
+        {"top_left", [this](const std::string& value) { top_left = Coord(value); }},
+        {"bottom_right", [this](const std::string& value) { bottom_right = Coord(value); }},
+    };
+
+    for (const auto& [option, value] : options)
+    {
+        auto it = parameterMap.find(option);
+        if (it != parameterMap.end())
+            it->second(value);
+    }
+}
+
 Item& Item::operator=(const Item& other) {
     if (this == &other)
         return *this;

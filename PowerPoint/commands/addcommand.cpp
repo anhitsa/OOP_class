@@ -10,8 +10,8 @@ AddCommand::AddCommand(std::unordered_map<std::string, std::string> options)
 
 void AddCommand::execute()
 {
-    std::shared_ptr<Target> target = createTarget(options);
-    std::shared_ptr<Container> container = createContainer(target, document, options);
+    std::shared_ptr<Target> target = createTarget();
+    std::shared_ptr<Container> container = createContainer(target);
 
     if (auto slide = std::dynamic_pointer_cast<Slide>(container))
         document.setActiveSlide(slide);
@@ -21,7 +21,7 @@ void AddCommand::execute()
     commandHistory.push(action);
 }
 
-std::shared_ptr<Target> AddCommand::createTarget(const std::unordered_map<std::string, std::string>& options)
+std::shared_ptr<Target> AddCommand::createTarget()
 {
     if (options.find("--item") != options.end())
         return createItem(options);
@@ -30,12 +30,12 @@ std::shared_ptr<Target> AddCommand::createTarget(const std::unordered_map<std::s
     throw std::invalid_argument("Unknown target type");
 }
 
-std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Target>& target, Document& document, const std::unordered_map<std::string, std::string>& options) {
+std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Target>& target) {
     if (std::dynamic_pointer_cast<Item>(target))
     {
         if (options.count("slide_id"))
         {
-            ID slideId = options.at("slide_id");
+            int slideId = options.at("slide_id");
             return document.findSlideById(slideId);
         }
         else

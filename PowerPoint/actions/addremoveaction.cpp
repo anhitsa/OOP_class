@@ -1,6 +1,11 @@
 #include "addremoveaction.h"
 
-AddRemoveAction::AddRemoveAction()
+void AddRemoveAction::execute()
 {
+    container->addTarget(target);
+}
 
+void AddRemoveAction::undo()
+{
+    container->removeTarget(target);
 }

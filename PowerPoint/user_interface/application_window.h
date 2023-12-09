@@ -16,7 +16,6 @@ class ApplicationWindow : public QMainWindow, public UIComponent
 
 public:
     static ApplicationWindow& getInstance();
-    void static initialize() { static ApplicationWindow instance; }
     void static exitApplication();
     void setBlankScreen() override;
 

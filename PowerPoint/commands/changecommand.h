@@ -9,6 +9,9 @@ public:
     ChangeCommand(std::unordered_map<std::string, std::string> options);
     void execute() override;
 
+private:
+    std::unordered_map<std::string, std::string> options;
+
 };
 
 #endif // CHANGECOMMAND_H

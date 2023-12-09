@@ -9,36 +9,18 @@
 class Document : public Container
 {
 public:
-    Document() = default;
-
+    static Document& getInstance();
     void addTarget(const std::shared_ptr<Target>&) override;
     void removeTarget(const std::shared_ptr<Target>&) override;
+    void setActiveSlide(const std::shared_ptr<Target>& slide);
+    std::shared_ptr<Target> getActiveSlide() const;
+    std::shared_ptr<Target> findSlideById(const ID& slideId) const;
+    std::shared_ptr<Target> createNewSlide();
 
-    void setActiveSlide(const std::shared_ptr<Target>& slide)
-    {
-        activeSlide = std::dynamic_pointer_cast<Slide>(slide);
-    }
-
-    std::shared_ptr<Target> getActiveSlide() const
-    {
-        return activeSlide;
-    }
-
-    std::shared_ptr<Target> findSlideById(const ID& slideId) const {
-        auto it = std::find_if(slides.begin(), slides.end(),
-                               [slideId](const auto& slide) {
-                                   return slide->getID() == slideId;
-                               });
-
-        return (it != slides.end()) ? *it : nullptr;
-    }
-
-    std::shared_ptr<Target> createNewSlide() {
-        std::shared_ptr<Target> newSlide = std::make_shared<Slide>();
-        slides.push_back(newSlide);
-        setActiveSlide(newSlide);
-        return newSlide;
-    }
+private:
+    Document() = default;
+    Document(const Document&) = delete;
+    Document& operator=(const Document&) = delete;
 
 private:
     std::vector<std::shared_ptr<Target>> slides;

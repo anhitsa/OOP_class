@@ -16,6 +16,12 @@ ApplicationWindow::ApplicationWindow(QWidget *parent)
     setAcceptDrops(true);
 }
 
+ApplicationWindow& ApplicationWindow::getInstance()
+{
+    static ApplicationWindow instance;
+    return instance;
+}
+
 void ApplicationWindow::createUI() {
     inputBox = new QLineEdit(this);
     submitButton = new QPushButton("Submit", this);
@@ -68,12 +74,6 @@ void ApplicationWindow::exitApplication() {
     loop.exec();
 
     QApplication::quit();
-}
-
-ApplicationWindow& ApplicationWindow::getInstance()
-{
-    static ApplicationWindow instance;
-    return instance;
 }
 
 void ApplicationWindow::resizeEvent(QResizeEvent* event)

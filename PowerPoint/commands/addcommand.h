@@ -2,6 +2,7 @@
 #define ADDCOMMAND_H
 
 #include "command.h"
+#include "../document/target.h"
 #include "../parser/lexer.h"
 
 #include <memory>
@@ -16,11 +17,14 @@ public:
     void execute() override;
 
 private:
+    std::shared_ptr<Target> createTarget();
+
+private:
     std::unordered_map<std::string, std::string> options;
-    static int slideIdCount;
-    static int itemIdCount;
     std::shared_ptr<Target> target;
     std::shared_ptr<Container> container;
+    static int slideIdCount;
+    static int itemIdCount;
 
 };
 

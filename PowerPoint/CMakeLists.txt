@@ -66,7 +66,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         user_interface/uicomponent.h
         commands/savecommand.h commands/savecommand.cpp
         user_interface/itemrenderer.h user_interface/itemrenderer.cpp
-        items/target.h
+
         commandHistory/commandhistory.h commandHistory/commandhistory.cpp
         commandHistory/stackcommandhistory.h commandHistory/stackcommandhistory.cpp
         actions/commandaction.h
@@ -75,6 +75,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         document/item.h document/item.cpp
         document/coord.h document/coord.cpp
         document/target.h
+        actions/changeaction.h actions/changeaction.cpp
 
 
 
