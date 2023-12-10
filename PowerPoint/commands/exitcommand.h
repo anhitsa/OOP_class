@@ -4,11 +4,16 @@
 #include "command.h"
 #include "../user_interface/application_window.h"
 
+#include <map>
+
 class ExitCommand: public Command
 {
 public:
-    ExitCommand()=default;
+    ExitCommand(std::map<std::string, std::string> options);
     void execute() override;
+
+private:
+    std::map<std::string, std::string> options;
 
 };
 

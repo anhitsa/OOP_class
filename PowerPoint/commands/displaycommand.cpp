@@ -1,24 +1,33 @@
 #include "displaycommand.h"
+#include "../document/document.h"
+#include "../document/documentmanager.h"
+
+DisplayCommand::DisplayCommand(std::map<std::string, std::string> options)
+    : options(options) {}
 
 void DisplayCommand::execute()
 {
-    if(id)
-        displayOneItem(slide);
-    else
-        displayWholeSlide(slide);
+    std::shared_ptr<Target> target = determineTarget();
+    renderer.display(target);
 }
 
-void DisplayCommand::displayOneItem(const Slide& slide)
+std::shared_ptr<Target> DisplayCommand::determineTarget()
 {
-    for(auto& item: slide.items)
+    std::shared_ptr<Document> document = DocumentManager::getInstance().getDocument();
+    if (options.find("slide_id") != options.end())
     {
-        if(item.id == id)
-            itemRenderer.drawItem(item);
+        int slideId = std::stoi(options.at("slide_id"));
+        auto slide = document->findSlideById<Target>(slideId);
+        if (slide)
+            return slide;
     }
+    if (options.find("item_id") != options.end())
+    {
+        int itemId = std::stoi(options.at("item_id"));
+        auto item = document->findItemById(itemId);
+        if (item)
+            return item;
+    }
+    return document->activeSlide;
 }
 
-void DisplayCommand::displayWholeSlide(const Slide& slide)
-{
-    for(auto& item: slide.items)
-        itemRenderer.drawItem(item);
-}

@@ -3,11 +3,16 @@
 
 #include "command.h"
 
+#include <map>
+
 class RemoveCommand: public Command
 {
 public:
-    RemoveCommand(std::unordered_map<std::string, std::string> options);
+    RemoveCommand(std::map<std::string, std::string> options);
     void execute() override;
+
+private:
+    std::map<std::string, std::string> options;
 
 };
 

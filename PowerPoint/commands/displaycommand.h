@@ -2,20 +2,23 @@
 #define DISPLAYCOMMAND_H
 
 #include "command.h"
-#include "../user_interface/itemrenderer.h"
+#include "../user_interface/renderer.h"
+
+#include <map>
+#include <memory>
 
 class DisplayCommand: public Command
 {
 public:
-    DisplayCommand(std::unordered_map<std::string, std::string> options);
+    DisplayCommand(std::map<std::string, std::string> options);
     void execute() override;
 
 private:
-    void displayOneItem(const Slide&);
-    void displayWholeSlide(const Slide&);
+    std::shared_ptr<Target> determineTarget();
 
 private:
-    ItemRenderer itemRenderer;
+    Renderer renderer;
+    std::map<std::string, std::string> options;
 };
 
 #endif // DISPLAYCOMMAND_H

@@ -65,17 +65,18 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         user_interface/draggableitemhandler.h user_interface/draggableitemhandler.cpp
         user_interface/uicomponent.h
         commands/savecommand.h commands/savecommand.cpp
-        user_interface/itemrenderer.h user_interface/itemrenderer.cpp
+        user_interface/renderer.h user_interface/renderer.cpp
 
         commandHistory/commandhistory.h commandHistory/commandhistory.cpp
-        commandHistory/stackcommandhistory.h commandHistory/stackcommandhistory.cpp
+
         actions/commandaction.h
         actions/addremoveaction.h actions/addremoveaction.cpp
-        document/container.h document/container.cpp
+        document/container.h
         document/item.h document/item.cpp
         document/coord.h document/coord.cpp
         document/target.h
         actions/changeaction.h actions/changeaction.cpp
+        document/documentmanager.h document/documentmanager.cpp
 
 
 

@@ -3,6 +3,7 @@
 
 #include "container.h"
 #include "target.h"
+#include "item.h"
 
 #include <vector>
 
@@ -13,11 +14,17 @@ public:
     Slide()=default;
     void addTarget(const std::shared_ptr<Target>&) override;
     void removeTarget(const std::shared_ptr<Target>&) override;
-    void changeParameters(std::unordered_map<std::string, std::string> options) override;
+    void changeParameters(std::map<std::string, std::string> options) override;
     void undoParametersChange() override;
+    std::shared_ptr<Target> findItemById(const int&) const;
+    void setId(int);
+    int getId() const override;
+
+public:
+    std::vector<std::shared_ptr<Target>> targets;
 
 private:
-    std::vector<std::shared_ptr<Target>> targets;
+    int id;
 
 };
 

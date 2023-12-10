@@ -3,19 +3,23 @@
 
 #include "command.h"
 
+#include <map>
 #include <string>
 
 class SaveCommand: public Command
 {
 public:
-    SaveCommand(std::unordered_map<std::string, std::string> options);
+    SaveCommand(std::map<std::string, std::string> options);
     void execute() override;
 
 public:
     std::string path;
 
 private:
-    std::string determineItemBlockText(const Item&) const;
+    std::map<std::string, std::string> options;
+
+//private:
+//    std::string determineItemBlockText(const Item&) const;
 
 };
 

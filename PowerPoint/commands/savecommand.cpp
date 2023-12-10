@@ -4,8 +4,14 @@
 #include <filesystem>
 #include <string>
 
+SaveCommand::SaveCommand(std::map<std::string, std::string> options)
+    : options(options) {}
+
 void SaveCommand::execute()
 {
+
+    // modify to json
+    /*auto path = options.at("path");
     std::ofstream slideYaml(path, std::ofstream::trunc);
     std::string contents;
 
@@ -16,14 +22,17 @@ void SaveCommand::execute()
     }
 
     slideYaml << contents;
-    slideYaml.close();
+    slideYaml.close();*/
 }
-
+/*
 std::string SaveCommand::determineItemBlockText(const Item& item) const
 {
+
     std::string item_block = item.kind + ":\n";
     item_block += "        top_left: " + std::to_string(item.top_left.x) + "," + std::to_string(item.top_left.y) + '\n';
     item_block += "        height: " + std::to_string(item.height) + '\n';
     item_block += "        width: " + std::to_string(item.width) + "\n\n";
     return item_block;
+
 }
+*/

@@ -4,18 +4,16 @@
 #include "coord.h"
 #include "target.h"
 
+#include <map>
 #include <string>
 
 class Item : public Target
 {
 public:
-    using Length = int;
-
-public:
-    Item(std::string kind, Coord top_left, Length height, Length width, int id);
+    Item(std::string kind, Coord top_left, int height, int width, int id);
     Item(std::string kind, Coord top_left, Coord bottom_right, int id);
-    Item(std::string kind, Coord top_left, Coord bottom_right, Length height, Length width, int id);
-    void changeParameters(std::unordered_map<std::string, std::string> options) override;
+    Item(std::string kind, Coord top_left, Coord bottom_right, int height, int width, int id);
+    void changeParameters(std::map<std::string, std::string> options) override;
     void undoParametersChange() override;
     Item& operator=(const Item& other);
     bool operator==(const Item& other) const { return this->id == other.id; }
@@ -26,20 +24,20 @@ public:
     const Coord& getTopLeft() const;
     void setBottomRight(const Coord&);
     const Coord& getBottomRight() const;
-    void setHeight(Length);
-    Length getHeight() const;
-    void setWidth(Length);
-    Length getWidth() const;
+    void setHeight(int);
+    int getHeight() const;
+    void setWidth(int);
+    int getWidth() const;
     void setId(int);
-    int getId() const;
+    int getId() const override;
 
 private:
     std::string kind;
     Coord top_left, bottom_right;
-    Length height, width;
+    int height, width;
     int id;
 
-    std::unordered_map<std::string, std::variant<Coord, Length>> prevParameters;
+    std::map<std::string, std::variant<Coord, int>> prevParameters;
 
 private:
     void saveParameters();

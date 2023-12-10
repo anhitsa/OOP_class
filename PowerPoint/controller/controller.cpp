@@ -1,6 +1,7 @@
 #include "controller.h"
 #include "../commands/command.h"
 #include "../document/document.h"
+#include "../document/documentmanager.h"
 #include "../user_interface/application_window.h"
 
 #include <memory>
@@ -12,7 +13,7 @@ int Controller::runPowerPointLoop(int argc, char* argv[])
     ApplicationWindow& appWindow = ApplicationWindow::getInstance();
     appWindow.show();
 
-    QObject::connect(&appWindow, &ApplicationWindow::userInputReceived, [this, &slide](const QString& input){
+    QObject::connect(&appWindow, &ApplicationWindow::userInputReceived, [this](const QString& input){
         std::unique_ptr<Command> command = commandParser.parse(input);
         command->execute();
     });

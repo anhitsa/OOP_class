@@ -4,14 +4,14 @@
 #include "commandaction.h"
 #include "../document/target.h"
 
+#include <map>
 #include <memory>
 #include <string>
-#include <unordered_map>
 
 class ChangeAction : public CommandAction
 {
 public:
-    ChangeAction(std::shared_ptr<Target> target, std::unordered_map<std::string, std::string> options)
+    ChangeAction(std::shared_ptr<Target> target, std::map<std::string, std::string> options)
         : target(target), options(options) {}
 
     void execute() override;
@@ -19,7 +19,7 @@ public:
 
 private:
     std::shared_ptr<Target> target;
-    std::unordered_map<std::string, std::string> options;
+    std::map<std::string, std::string> options;
 
 };
 

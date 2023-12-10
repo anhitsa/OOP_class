@@ -3,8 +3,10 @@
 
 #include "command.h"
 #include "../document/target.h"
+#include "../document/container.h"
 #include "../parser/lexer.h"
 
+#include <map>
 #include <memory>
 #include <optional>
 #include <string>
@@ -13,7 +15,7 @@
 class AddCommand: public Command
 {
 public:
-    AddCommand(std::unordered_map<std::string, std::string> options);
+    AddCommand(std::map<std::string, std::string> options);
     void execute() override;
 
 private:
@@ -22,7 +24,7 @@ private:
     std::shared_ptr<Target> createItem();
 
 private:
-    std::unordered_map<std::string, std::string> options;
+    std::map<std::string, std::string> options;
     std::shared_ptr<Target> target;
     std::shared_ptr<Container> container;
     static int slideIdCount;

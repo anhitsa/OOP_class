@@ -1,8 +1,6 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include "../items/item.h"
-
 #include <QString>
 #include <string>
 #include <tuple>

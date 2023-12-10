@@ -26,12 +26,14 @@ private:
 private:
     std::string determineCommandName(const Tokens);
     std::optional<std::string> determineValue(const Tokens, const std::string option);
+    void extractOptions(Tokens::iterator start, Tokens::iterator end);
 
 private:
     Lexer lexer;
     CommandFactory command_factory;
     Validator validator;
-    std::unordered_map<std::string, std::string> options;
+    std::map<std::string, std::string> options;
+
 
 };
 

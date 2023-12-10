@@ -23,18 +23,11 @@ class CommandFactory
 {
 public:
     CommandFactory();
-    std::unique_ptr<Command> createCommand(std::string command_name);
+    std::unique_ptr<Command> createCommand(const std::string, std::map<std::string, std::string>);
 
 private:
-    std::map<std::string, std::function<std::unique_ptr<Command>()>> commands;
+    std::map<std::string, std::function<std::unique_ptr<Command>(const std::map<std::string, std::string>&)>> commands;
 
-private:
-    std::unique_ptr<Command> createAddCommand(const std::unordered_map<std::string, std::string>&);
-    std::unique_ptr<Command> createChangeCommand(const std::unordered_map<std::string, std::string>&);
-    std::unique_ptr<Command> createRemoveCommand(const std::unordered_map<std::string, std::string>&);
-    std::unique_ptr<Command> createExitCommand(const std::unordered_map<std::string, std::string>&);
-    std::unique_ptr<Command> createSaveCommand(const std::unordered_map<std::string, std::string>&);
-    std::unique_ptr<Command> createDisplayCommand(const std::unordered_map<std::string, std::string>&);
 
 };
 
