@@ -5,6 +5,7 @@
 #include "../commands/changecommand.h"
 #include "../commands/command.h"
 #include "../commands/displaycommand.h"
+#include "../commands/drawcommand.h"
 #include "../commands/exitcommand.h"
 #include "../commands/removecommand.h"
 #include "../commands/savecommand.h"

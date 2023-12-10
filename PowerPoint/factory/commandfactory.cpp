@@ -11,6 +11,9 @@ CommandFactory::CommandFactory()
     commands["display"] = [this](const std::map<std::string, std::string>& options) -> std::unique_ptr<Command> {
         return std::make_unique<DisplayCommand>(options);
     };
+    commands["draw"] = [this](const std::map<std::string, std::string>& options) -> std::unique_ptr<Command> {
+        return std::make_unique<DrawCommand>(options);
+    };
     commands["exit"] = [this](const std::map<std::string, std::string>& options) -> std::unique_ptr<Command> {
         return std::make_unique<ExitCommand>(options);
     };

@@ -77,6 +77,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         document/target.h
         actions/changeaction.h actions/changeaction.cpp
         document/documentmanager.h document/documentmanager.cpp
+        commands/drawcommand.h commands/drawcommand.cpp
+        serializer/serializer.h serializer/serializer.cpp
 
 
 

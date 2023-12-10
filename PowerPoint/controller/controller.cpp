@@ -13,6 +13,9 @@ int Controller::runPowerPointLoop(int argc, char* argv[])
     ApplicationWindow& appWindow = ApplicationWindow::getInstance();
     appWindow.show();
 
+    DocumentManager& manager = DocumentManager::getInstance();
+    manager.setDocument(std::make_shared<Document>());
+
     QObject::connect(&appWindow, &ApplicationWindow::userInputReceived, [this](const QString& input){
         std::unique_ptr<Command> command = commandParser.parse(input);
         command->execute();

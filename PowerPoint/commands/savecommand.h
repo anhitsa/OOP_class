@@ -2,6 +2,7 @@
 #define SAVECOMMAND_H
 
 #include "command.h"
+#include "../serializer/serializer.h"
 
 #include <map>
 #include <string>
@@ -17,9 +18,7 @@ public:
 
 private:
     std::map<std::string, std::string> options;
-
-//private:
-//    std::string determineItemBlockText(const Item&) const;
+    Serializer serializer;
 
 };
 

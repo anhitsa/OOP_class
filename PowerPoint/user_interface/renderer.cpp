@@ -39,6 +39,8 @@ void Renderer::drawItem(std::shared_ptr<Item> item)
 
 void Renderer::drawSlide(std::shared_ptr<Slide> slide)
 {
+    ApplicationWindow& appWin = ApplicationWindow::getInstance();
+    appWin.setBlankScreen();
     for (auto& target : slide->targets)
         draw(target);
 }

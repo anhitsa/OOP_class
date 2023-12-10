@@ -58,7 +58,7 @@ std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Tar
 std::shared_ptr<Target> AddCommand::createItem()
 {
     itemIdCount++;
-    std::string kind = options.at("kind");
+    std::string kind = options.at("item");
     Coord top_left = Coord(options.at("top_left"));
     Coord bottom_right = (options.find("bottom_right") != options.end()) ? Coord(options.at("bottom_right")) : Coord();
     int height = (options.find("height") != options.end()) ? std::stoi(options.at("height")) : 0;

@@ -8,24 +8,23 @@ std::unique_ptr<Command> CommandParser::parse(const QString& input)
 {
     Tokens tokens = lexer.tokenizeInput(input);
     std::string command_name = determineCommandName(tokens);
-
-    auto optionStart = std::find_if(tokens.begin(), tokens.end(), [](const auto& token) {
-        return token.find("--") == 0;
-    });
-
-    if (optionStart != tokens.end())
-        extractOptions(optionStart, std::prev(tokens.end()));
-
+    std::map<std::string, std::string> options = extractOptions(tokens);
     return command_factory.createCommand(command_name, options);
 }
 
-void CommandParser::extractOptions(Tokens::iterator start, Tokens::iterator end)
+std::map<std::string, std::string> CommandParser::extractOptions(const Tokens& tokens)
 {
-    for (auto it = start; it != end; ++it)
+    auto start = std::find_if(tokens.begin(), tokens.end(), [](const auto& token) {
+        return token.find("--") == 0;
+    });
+
+    std::map<std::string, std::string> options;
+    for (auto it = start; std::distance(it, tokens.end()) >= 2; it += 2)
     {
         std::string key = it->substr(2);
-        options[key] = std::next(it)->substr(2);
+        options[key] = *(std::next(it));
     }
+    return options;
 }
 
 std::string CommandParser::determineCommandName(const Tokens tokens)

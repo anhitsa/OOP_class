@@ -12,23 +12,24 @@ RemoveCommand::RemoveCommand(std::map<std::string, std::string> options)
 void RemoveCommand::execute()
 {
     std::shared_ptr<Document> document = DocumentManager::getInstance().getDocument();
-    int targetId = std::stoi(options.at("id"));
-    auto item = document->findItemById(targetId);
-    if (item)
+    auto itemId = std::stoi(options.at("item_id"));
+    auto item = document->findItemById(itemId);
+    if (itemId)
     {
         document->activeSlide->targets.erase(std::remove_if(document->activeSlide->targets.begin(), document->activeSlide->targets.end(),
-                                                  [targetId](const std::shared_ptr<Target>& slideItem) {
-                                                      return slideItem->getId() == targetId;
+                                                  [itemId](const std::shared_ptr<Target>& slideItem) {
+                                                      return slideItem->getId() == itemId;
                                              }), document->activeSlide->targets.end());
         return;
     }
 
-    auto slide = document->findSlideById<Target>(targetId);
+    auto slideId = std::stoi(options.at("slide_id"));
+    auto slide = document->findSlideById<Target>(slideId);
     if (slide)
     {
         document->slides.erase(std::remove_if(document->slides.begin(), document->slides.end(),
-                                             [targetId](const std::shared_ptr<Slide>& slide) {
-                                                 return slide->getId() == targetId;
+                                             [slideId](const std::shared_ptr<Slide>& slide) {
+                                                 return slide->getId() == slideId;
                                }), document->slides.end());
         return;
     }
