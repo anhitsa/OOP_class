@@ -24,7 +24,7 @@ private:
     std::shared_ptr<Target> createItem();
 
 private:
-    std::map<std::string, std::string> options;
+    std::map<std::string, std::string> options; //TK: duplication
     std::shared_ptr<Target> target;
     std::shared_ptr<Container> container;
     static int slideIdCount;

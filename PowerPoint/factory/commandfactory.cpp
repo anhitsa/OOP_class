@@ -2,6 +2,8 @@
 
 CommandFactory::CommandFactory()
 {
+    //TK: Since here you have individual creators for each command, you can pass all necessary thing to the command via its constructor
+    //TK: i.e  pointers of Document, Director & etc could be passed to the Factory by Application itself and Factory could bass it to specific commands 
     commands["add"] = [this](const std::map<std::string, std::string>& options) -> std::unique_ptr<Command> {
         return std::make_unique<AddCommand>(options);
     };

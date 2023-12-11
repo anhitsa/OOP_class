@@ -14,7 +14,7 @@ public:
     std::shared_ptr<Target> determineTarget();
 
 private:
-    std::map<std::string, std::string> options;
+    std::map<std::string, std::string> options; //TK: duplication
 
 };
 

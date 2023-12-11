@@ -10,12 +10,17 @@ class Document : public Container
 {
 public:
     Document() = default;
+    //TK: I do not understand for what this Target is needed for
+    //TK: I can imagine documents intercase more simpler: add(Slide, position), remove(index), get(index), count(), iterators: begin(), end() 
     void addTarget(const std::shared_ptr<Target>&) override;
     void removeTarget(const std::shared_ptr<Target>&) override;
+    //TK: I doubt that active slide belongs to the document, it is more editor/viewer's competency
     void setActiveSlide(const std::shared_ptr<Target>& slide);
     std::shared_ptr<Target> findItemById(const int& itemId) const;
+    //TK: If you have add methos then you do not need createNewSlide method, instead you can create a new slide and add it to the document, remeber primitivness
     std::shared_ptr<Target> createNewSlide();
 
+    //TK: Find should return iterator
     template <typename TargetType>
     std::shared_ptr<TargetType> findSlideById(const int& slideId) const {
         auto it = std::find_if(slides.begin(), slides.end(),
