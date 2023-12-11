@@ -11,7 +11,7 @@ void DisplayCommand::execute()
     renderer.display(target);
 }
 
-std::shared_ptr<Target> DisplayCommand::determineTarget()
+std::shared_ptr<Target> DisplayCommand::determineTarget() //TK: code duplication
 {
     std::shared_ptr<Document> document = DocumentManager::getInstance().getDocument();
     if (options.find("slide_id") != options.end())

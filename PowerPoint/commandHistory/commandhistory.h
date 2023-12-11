@@ -6,9 +6,11 @@
 #include <memory>
 #include <stack>
 
+//TK: This is you ActionManager, call it respectively
 class CommandHistory {
 public:
     static CommandHistory& getInstance();
+    //TK: this method should be called do() to be homohen pous with undo & redo
     void push(std::shared_ptr<CommandAction> action);
     void undo();
     void redo();

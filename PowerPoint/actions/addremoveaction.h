@@ -19,6 +19,7 @@ public:
 private:
     std::shared_ptr<Target> target;
     std::shared_ptr<Container> container;
+    //TK: here you also need the position to restore target in its original position 
 
 };
 

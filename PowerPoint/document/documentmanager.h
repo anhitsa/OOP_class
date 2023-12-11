@@ -7,6 +7,7 @@
 
 class Document;
 
+//TK: You do not need this class
 class DocumentManager
 {
 public:

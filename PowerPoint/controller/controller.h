@@ -7,7 +7,7 @@ class Controller
 {
 public:
     Controller() {}
-    int runPowerPointLoop(int argc, char* argv[]);
+    int runPowerPointLoop(int argc, char* argv[]); //TK: argc & argv should be handled by the application, not controller
 
 private:
     CommandParser commandParser;

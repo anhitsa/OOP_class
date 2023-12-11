@@ -9,6 +9,7 @@ CommandHistory& CommandHistory::getInstance()
 void CommandHistory::push(std::shared_ptr<CommandAction> action)
 {
     undoStack.push(action);
+    
     while (!redoStack.empty())
         redoStack.pop();
 }

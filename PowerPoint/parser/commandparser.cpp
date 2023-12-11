@@ -14,6 +14,7 @@ std::unique_ptr<Command> CommandParser::parse(const QString& input)
 
 std::map<std::string, std::string> CommandParser::extractOptions(const Tokens& tokens)
 {
+    //TK: options extraction could be organized more simple and safe way
     auto start = std::find_if(tokens.begin(), tokens.end(), [](const auto& token) {
         return token.find("--") == 0;
     });
@@ -29,6 +30,7 @@ std::map<std::string, std::string> CommandParser::extractOptions(const Tokens& t
 
 std::string CommandParser::determineCommandName(const Tokens tokens)
 {
+    //TK: Determination of the command is simply lookup of the command in the command factory
     validator.verifyCommandName(tokens[0]);
     return tokens[0];
 }

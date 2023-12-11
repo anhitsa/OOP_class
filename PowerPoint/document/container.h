@@ -3,6 +3,7 @@
 
 #include "target.h"
 
+//TK: If your intent is to have standardazied interfaced for your container-like classes then it is better to make this template implementation adn derive from it
 class Container
 {
 public:

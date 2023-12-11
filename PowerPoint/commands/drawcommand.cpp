@@ -11,7 +11,7 @@ void DrawCommand::execute()
     renderer.draw(target);
 }
 
-std::shared_ptr<Target> DrawCommand::determineTarget()
+std::shared_ptr<Target> DrawCommand::determineTarget() //TK: code duplication
 {
     std::shared_ptr<Document> document = DocumentManager::getInstance().getDocument();
     if (options.find("slide_id") != options.end())

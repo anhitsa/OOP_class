@@ -13,6 +13,7 @@ public:
     Coord()=default;
     explicit operator bool() const;
     std::optional<Coord> make_optional() const;
+    //TK: memeber variables should be private
     int x, y;
 };
 

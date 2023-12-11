@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 
+//TK:  Window objects should not be singletone, overall UI should be thought organized better way
 class ApplicationWindow : public QMainWindow, public UIComponent
 {
     Q_OBJECT

@@ -16,6 +16,7 @@ void RemoveCommand::execute()
     auto item = document->findItemById(itemId);
     if (itemId)
     {
+        //TK: Do not dlete like this, use AddRemove action instead, Remove is also subject of Undo/Redo
         document->activeSlide->targets.erase(std::remove_if(document->activeSlide->targets.begin(), document->activeSlide->targets.end(),
                                                   [itemId](const std::shared_ptr<Target>& slideItem) {
                                                       return slideItem->getId() == itemId;
@@ -27,6 +28,7 @@ void RemoveCommand::execute()
     auto slide = document->findSlideById<Target>(slideId);
     if (slide)
     {
+        //TK: Do not dlete like this, use AddRemove action instead, Remove is also subject of Undo/Redo
         document->slides.erase(std::remove_if(document->slides.begin(), document->slides.end(),
                                              [slideId](const std::shared_ptr<Slide>& slide) {
                                                  return slide->getId() == slideId;

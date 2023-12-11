@@ -3,6 +3,7 @@
 
 Renderer::Renderer() : appWindow(ApplicationWindow::getInstance())
 {
+    //TK: Drawing functions will not stay as simple, it will be better to use Shapes instead of lambdas 
     drawingFunctions = {
         {"circle", [this](std::shared_ptr<Item> item, QPen& pen, QPainter& painter) { drawCircle(item, pen, painter); }},
         {"elipse", [this](std::shared_ptr<Item> item, QPen& pen, QPainter& painter) { drawElipse(item, pen, painter); }},
@@ -13,6 +14,7 @@ Renderer::Renderer() : appWindow(ApplicationWindow::getInstance())
 
 void Renderer::draw(std::shared_ptr<Target> target)
 {
+    //TK: you can use Visitor pattern instead of dynamic casts
     if (std::dynamic_pointer_cast<Item>(target))
         drawItem(std::dynamic_pointer_cast<Item>(target));
     else if (std::dynamic_pointer_cast<Slide>(target))

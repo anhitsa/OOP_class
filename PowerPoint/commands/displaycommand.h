@@ -18,7 +18,7 @@ private:
 
 private:
     Renderer renderer;
-    std::map<std::string, std::string> options;
+    std::map<std::string, std::string> options; // TK: duplication
 };
 
 #endif // DISPLAYCOMMAND_H

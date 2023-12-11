@@ -18,6 +18,7 @@ class CommandParser
 {
 public:
     CommandParser()=default;
+    //TK: Accept istream instead of string
     std::unique_ptr<Command> parse(const QString&);
 
 private:
@@ -30,6 +31,7 @@ private:
 
 private:
     Lexer lexer;
+    //TK: If commands are not belonging to the parser then CommandFactory also should be located outside, it is not part of the parser
     CommandFactory command_factory;
     Validator validator;
 

@@ -25,6 +25,7 @@ void AddCommand::execute()
         document->setActiveSlide(slide);
 
     std::shared_ptr<CommandAction> action = std::make_shared<AddRemoveAction>(target, container);
+    //TK: execute method should be called by commandHistory, actually your commandHistory is not simply history , it is your action mananager  
     action->execute();
     commandHistory.push(action);
 }
@@ -38,6 +39,7 @@ std::shared_ptr<Target> AddCommand::createTarget()
     throw std::invalid_argument("Unknown target type");
 }
 
+//TK: Why this method called createContainer if it finds and return existing one? it makes confusion and complicates code reading
 std::shared_ptr<Container> AddCommand::createContainer(const std::shared_ptr<Target>& target) {
     std::shared_ptr<Document> document = DocumentManager::getInstance().getDocument();
     if (std::dynamic_pointer_cast<Item>(target))
