@@ -2,8 +2,8 @@
 #define CHANGECOMMAND_H
 
 #include "command.h"
-#include "../../Director/Actions/changeaction.h"
-#include "../../Director/ActionManager/actionmanager.h"
+#include "../../ActionHandler/Actions/changeaction.h"
+#include "../../ActionHandler/ActionManager/actionmanager.h"
 #include "../../PresentationElements/document.h"
 
 class ChangeCommand: public Command

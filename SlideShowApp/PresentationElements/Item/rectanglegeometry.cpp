@@ -1,65 +1,71 @@
-#include "rectangle.h"
+#include "rectanglegeometry.h"
 
-Rectangle::Rectangle(Coord topLeft, int height, int width)
+RectangleGeometry::RectangleGeometry(Coord topLeft, int height, int width)
     : topLeft(topLeft), height(height), width(width)
 {
-    bottomRight = Coord(topLeft.getX() + width, topLeft.getY() - height);
+    bottomRight = Coord(topLeft.getX() + width, topLeft.getY() + height);
 }
 
-Rectangle::Rectangle(Coord topLeft, Coord bottomRight)
+RectangleGeometry::RectangleGeometry(Coord topLeft, Coord bottomRight)
     : topLeft(topLeft), bottomRight(bottomRight)
 {
-    height = topLeft.getY() - bottomRight.getY();
+    height = bottomRight.getY() - topLeft.getY();
     width = bottomRight.getX() - topLeft.getX();
 }
 
-Rectangle::Rectangle(Coord topLeft, Coord bottomRight, int height, int width)
+RectangleGeometry::RectangleGeometry(Coord topLeft, Coord bottomRight, int height, int width)
     : topLeft(topLeft), bottomRight(bottomRight), height(height), width(width)
 {
 
 }
 
-Coord Rectangle::getTopLeft() const
+RectangleGeometry::RectangleGeometry(Coord topLeft, int height)
+    : topLeft(topLeft), height(height), width(height)
+{
+    bottomRight = Coord(topLeft.getX() + width, topLeft.getY() + height);
+}
+
+Coord RectangleGeometry::getTopLeft() const
 {
     return topLeft;
 }
 
-Coord Rectangle::getBottomRight() const
+Coord RectangleGeometry::getBottomRight() const
 {
     return bottomRight;
 }
 
-int Rectangle::getHeight() const
+int RectangleGeometry::getHeight() const
 {
     return height;
 }
 
-int Rectangle::getWidth() const
+int RectangleGeometry::getWidth() const
 {
     return width;
 }
 
-void Rectangle::setTopLeft(Coord newTopLeft)
+void RectangleGeometry::setTopLeft(Coord newTopLeft)
 {
     topLeft = newTopLeft;
 }
 
-void Rectangle::setBottomRight(Coord newBottomRight)
+void RectangleGeometry::setBottomRight(Coord newBottomRight)
 {
     bottomRight = newBottomRight;
 }
 
-void Rectangle::setHeight(int newHeight)
+void RectangleGeometry::setHeight(int newHeight)
 {
     height = newHeight;
 }
 
-void Rectangle::setWidth(int newWidth)
+void RectangleGeometry::setWidth(int newWidth)
 {
     width = newWidth;
 }
 
-Rectangle& Rectangle::operator=(const Rectangle& other)
+RectangleGeometry& RectangleGeometry::operator=(const RectangleGeometry& other)
 {
     if (this == &other)
         return *this;
@@ -71,7 +77,7 @@ Rectangle& Rectangle::operator=(const Rectangle& other)
     return *this;
 }
 
-void Rectangle::revertToLatestParameters()
+void RectangleGeometry::revertToLatestParameters()
 {
     topLeft = std::get<Coord>(prevParameters.find("top_left")->second);
     bottomRight = std::get<Coord>(prevParameters.find("bottom_right")->second);;
@@ -79,7 +85,7 @@ void Rectangle::revertToLatestParameters()
     width = std::get<int>(prevParameters.find("width")->second);
 }
 
-void Rectangle::saveParametersLatestVersion()
+void RectangleGeometry::saveParametersLatestVersion()
 {
     prevParameters["top_left"] = topLeft;
     prevParameters["bottom_right"] = bottomRight;
@@ -87,7 +93,7 @@ void Rectangle::saveParametersLatestVersion()
     prevParameters["width"] = width;
 }
 
-void Rectangle::changeParameters(std::map<std::string, std::string> options)
+void RectangleGeometry::changeParameters(std::map<std::string, std::string> options)
 {
     saveParametersLatestVersion();
     std::map<std::string, std::function<void(const std::string&)>> parameterMap = {

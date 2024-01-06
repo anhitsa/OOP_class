@@ -14,19 +14,14 @@ CommandLineInputBox::CommandLineInputBox() : QWidget()
 
 QVBoxLayout* CommandLineInputBox::createInputBoxLayout()
 {
-    createInputBox();
+    inputBox = new QLineEdit(this);
+    inputBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     layout = new QVBoxLayout;
     layout->addWidget(inputBox);
     layout->addWidget(submitButton);
     QSpacerItem* spacer = new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding);
     layout->addItem(spacer);
     return layout;
-}
-
-void CommandLineInputBox::createInputBox()
-{
-    inputBox = new QLineEdit(this);
-    inputBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 }
 
 void CommandLineInputBox::createSublitButton()

@@ -4,8 +4,9 @@
 #include "command.h"
 #include "../../PresentationElements/document.h"
 #include "../../PresentationElements/Item/item.h"
-#include "../../Director/ActionManager/actionmanager.h"
-#include "../../Director/Actions/removeaction.h"
+#include "../../ActionHandler/ActionManager/actionmanager.h"
+#include "../../ActionHandler/Actions/removeitemaction.h"
+#include "../../ActionHandler/Actions/removeslideaction.h"
 
 class RemoveCommand: public Command
 {
@@ -14,8 +15,8 @@ public:
     void execute() override;
 
 private:
-    std::shared_ptr<Target> determineTarget();
-    std::shared_ptr<Container<Target>> determineContainer(const std::shared_ptr<Target>&);
+    void removeSlide();
+    void removeItem();
 
 private:
     std::shared_ptr<Document> document;

@@ -2,9 +2,9 @@
 
 #include <memory>
 
-void Slide::setId(ID newId)
+Slide::Slide(const ID id) : id(id)
 {
-    id = newId;
+
 }
 
 const Slide::ID& Slide::getId() const
@@ -12,38 +12,41 @@ const Slide::ID& Slide::getId() const
     return id;
 }
 
-void Slide::add(const std::shared_ptr<Target>& target)
+void Slide::add(const std::shared_ptr<Item>& item)
 {
-    targets.push_back(target);
+    items.push_back(item);
 }
 
-void Slide::remove(const std::shared_ptr<Target>& target)
+void Slide::remove(const std::shared_ptr<Item>& item)
 {
-    auto it = std::find(targets.begin(), targets.end(), target);
-    if (it != targets.end())
-        targets.erase(it);
+    auto it = std::find(items.begin(), items.end(), item);
+    if (it != items.end())
+        items.erase(it);
 }
 
-std::shared_ptr<Target> Slide::findItemById(const ID& itemId) const
+std::vector<std::shared_ptr<Item>>::iterator Slide::findItemById(const ID& itemId)
 {
-    auto it = std::find_if(targets.begin(), targets.end(),
-                           [itemId](const auto& item) {
-                               return item->getId() == itemId;
-                           });
-
-    return (it != targets.end()) ? *it : nullptr;
+    return std::find_if(items.begin(), items.end(),
+                        [itemId](const auto& item) {
+                            return item->getId() == itemId;
+                        });
 }
 
-std::vector<std::shared_ptr<Target>> Slide::getTargets() const
+std::vector<std::shared_ptr<Item>> Slide::getItems() const
 {
-    return targets;
+    return items;
 }
 
 std::string Slide::getInfo() const
 {
     std::string info;
     info += "Slide id: " + std::to_string(id) + "\n";
-    for(auto& target : targets)
-        info += target->getInfo();
+    for(auto& item : items)
+        info += item->getInfo();
     return info;
+}
+
+Slide::ID Slide::getNewItemId() const
+{
+    return items.size() + 1;
 }

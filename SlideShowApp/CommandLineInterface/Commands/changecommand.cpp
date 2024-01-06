@@ -18,11 +18,11 @@ std::shared_ptr<Item> ChangeCommand::determineItem()
     if (options.find("item_id") != options.end())
     {
         int itemId = std::stoi(options.at("item_id"));
-        auto item = document->findItemById(itemId);
+        auto item = *(document->getActiveSlide()->findItemById(itemId));
         if (item)
         {
             options.erase("item_id");
-            return std::static_pointer_cast<Item>(item);
+            return item;
         }
     }
 

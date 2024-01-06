@@ -10,6 +10,8 @@ Application::Application(int& argc, char* argv[])
     actionManager(std::make_shared<ActionManager>())
 {
     controller->setCommandFactory(std::make_shared<CommandFactory>(document, renderer, serializer, actionManager));
+    connect(applicationWindow->getUndoButton(), &QPushButton::clicked, actionManager.get(), &ActionManager::undo);
+    connect(applicationWindow->getRedoButton(), &QPushButton::clicked, actionManager.get(), &ActionManager::redo);
 }
 
 std::shared_ptr<Application> Application::getInstance(int& argc, char* argv[])
@@ -22,7 +24,6 @@ std::shared_ptr<Application> Application::getInstance()
 {
     int default_argc = 0;
     char* default_argv[] = { nullptr };
-
     return getInstance(default_argc, default_argv);
 }
 
@@ -54,5 +55,5 @@ int Application::run()
 void Application::exitApplication()
 {
     applicationWindow->exitApplicationWindowWithMessage();
-    exit();
+    QApplication::quit();
 }

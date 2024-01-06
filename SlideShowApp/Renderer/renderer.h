@@ -1,10 +1,11 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "../PresentationElements/Item/item.h"
-#include "../PresentationElements/target.h"
 #include "../PresentationElements/slide.h"
-
+#include "Shapes/circle.h"
+#include "Shapes/elipse.h"
+#include "Shapes/line.h"
+#include "Shapes/rectangle.h"
 #include "../UserInterface/applicationwindow.h"
 
 #include <functional>
@@ -20,20 +21,16 @@ class Renderer
 {
 public:
     Renderer(std::shared_ptr<ApplicationWindow>);
-    void draw(std::shared_ptr<Target>);
+    void draw(std::shared_ptr<Slide>);
+    void draw(std::shared_ptr<Item>);
     void display(std::string);
 
 private:
-    void drawItem(std::shared_ptr<Item>);
-    void drawSlide(std::shared_ptr<Slide>);
-    void drawCircle(std::shared_ptr<Item>, QPen&, QPainter&);
-    void drawElipse(std::shared_ptr<Item>, QPen&, QPainter&);
-    void drawLine(std::shared_ptr<Item>, QPen&, QPainter&);
-    void drawRectangle(std::shared_ptr<Item>, QPen&, QPainter&);
-    std::map<std::string, std::function<void(std::shared_ptr<Item>, QPen&, QPainter&)>> drawingFunctions;
+    void configurePainter(QPainter&, const std::shared_ptr<Item>&);
 
 private:
     std::shared_ptr<ApplicationWindow> appWindow;
+    std::map<std::string, std::shared_ptr<Shape>>  shapeMap;
 };
 
 #endif // RENDERER_H

@@ -6,11 +6,17 @@
 #include <memory>
 #include <stack>
 
-class ActionManager
+#include <QObject>
+
+class ActionManager : public QObject
 {
+    Q_OBJECT
+
 public:
-    ActionManager() = default;
+    ActionManager()=default;
     void do_(std::shared_ptr<CommandAction> action);
+
+public slots:
     void undo();
     void redo();
 

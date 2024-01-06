@@ -1,10 +1,11 @@
 #include "applicationwindow.h"
 
 ApplicationWindow::ApplicationWindow(std::shared_ptr<CommandLineInputBox> commandLineInputBox,
-                                     std::shared_ptr<CommandLineOutputTerminal> commandLineOutputTerminal,
+                                     std::shared_ptr<CommandLineOutputLog> commandLineOutputTerminal,
                                      QWidget *parent)
-    : QMainWindow(parent), commandLineInputBox(commandLineInputBox), commandLineOutputTerminal(commandLineOutputTerminal)
+    : QMainWindow(parent), commandLineInputBox(commandLineInputBox), commandLineOutputLog(commandLineOutputTerminal)
 {
+    layout = new QVBoxLayout;
     createUI();
     setWindowTitle("PowerPoint");
     setAcceptDrops(true);
@@ -12,20 +13,26 @@ ApplicationWindow::ApplicationWindow(std::shared_ptr<CommandLineInputBox> comman
 
 void ApplicationWindow::createUI()
 {
-    layout = commandLineInputBox->createInputBoxLayout();
+    auto inputBoxLayout = commandLineInputBox->createInputBoxLayout();
+    layout->addLayout(inputBoxLayout);
+    auto undoRedoButtonsLayout = determineUndoRedoButtonsLayout();
+    layout->addLayout(undoRedoButtonsLayout);
     imageLabel = new QLabel(this);
     layout->addWidget(imageLabel);
     imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    auto outputTerminalLabel = commandLineOutputTerminal->createOutputTerminalLabel();
-    layout->addWidget(outputTerminalLabel);
+    auto outputLogLabel = commandLineOutputLog->createOutputLogLabel();
+    layout->addWidget(outputLogLabel);
+
     QWidget* centralWidget = new QWidget(this);
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
+
     setMinimumSize(800, 600);
     pixmap = QPixmap(size());
     pixmap.fill(Qt::white);
     show();
 }
+
 
 void ApplicationWindow::exitApplicationWindowWithMessage()
 {
@@ -62,6 +69,38 @@ void ApplicationWindow::setBlankScreen()
 
 void ApplicationWindow::displayTextOnOutputTerminal(const std::string textToBeDisplayed)
 {
-    auto outputTerminalLabel = commandLineOutputTerminal->createOutputTerminalLabel(textToBeDisplayed);
+    auto outputTerminalLabel = commandLineOutputLog->createOutputLogLabel(textToBeDisplayed);
     layout->addWidget(outputTerminalLabel);
 }
+
+QLayout* ApplicationWindow::determineUndoRedoButtonsLayout()
+{
+    const QString imageDir = QFileInfo(QStringLiteral(__FILE__)).path();
+    QHBoxLayout* undoRedoLayout = new QHBoxLayout;
+
+    undoButton = new QPushButton(QIcon(imageDir + "/undo_icon.png"), "");
+    undoButton->setToolTip("Undo");
+    undoButton->setFixedSize(30, 30);
+
+    redoButton = new QPushButton(QIcon(imageDir + "/redo_icon.png"), "");
+    redoButton->setToolTip("Redo");
+    redoButton->setFixedSize(30, 30);
+
+    undoRedoLayout->addWidget(undoButton);
+    undoRedoLayout->addWidget(redoButton);
+    undoRedoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
+
+    return undoRedoLayout;
+}
+
+
+QPushButton* ApplicationWindow::getUndoButton() const
+{
+    return undoButton;
+}
+
+QPushButton* ApplicationWindow::getRedoButton() const
+{
+    return redoButton;
+}
+

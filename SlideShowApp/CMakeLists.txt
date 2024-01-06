@@ -38,23 +38,33 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         CommandLineInterface/CommandParser/commandparser.h CommandLineInterface/CommandParser/commandparser.cpp
         CommandLineInterface/CommandParser/lexer.h CommandLineInterface/CommandParser/lexer.cpp
         CommandLineInterface/CommandFactory/commandfactory.h CommandLineInterface/CommandFactory/commandfactory.cpp
-        PresentationElements/container.h
-        PresentationElements/target.h
+
+
         PresentationElements/document.h PresentationElements/document.cpp
         PresentationElements/slide.h PresentationElements/slide.cpp
         PresentationElements/Item/item.h PresentationElements/Item/item.cpp
         PresentationElements/Item/coord.h PresentationElements/Item/coord.cpp
-        Director/Actions/addaction.h Director/Actions/addaction.cpp
-        Director/Actions/changeaction.h Director/Actions/changeaction.cpp
-        Director/Actions/commandaction.h
-        Director/ActionManager/actionmanager.h Director/ActionManager/actionmanager.cpp
 
-        PresentationElements/Item/rectangle.h PresentationElements/Item/rectangle.cpp
+        ActionHandler/Actions/changeaction.h ActionHandler/Actions/changeaction.cpp
+        ActionHandler/Actions/commandaction.h
+        ActionHandler/ActionManager/actionmanager.h ActionHandler/ActionManager/actionmanager.cpp
+
+        PresentationElements/Item/rectanglegeometry.h PresentationElements/Item/rectanglegeometry.cpp
         Application/application.h Application/application.cpp
         UserInterface/commandlineinputbox.h UserInterface/commandlineinputbox.cpp
-        Director/Actions/removeaction.h Director/Actions/removeaction.cpp
+
         CommandLineInterface/Controller/controller.h CommandLineInterface/Controller/controller.cpp
-        UserInterface/commandlineoutputterminal.h UserInterface/commandlineoutputterminal.cpp
+        ActionHandler/Actions/additemaction.h ActionHandler/Actions/additemaction.cpp
+        ActionHandler/Actions/addslideaction.h ActionHandler/Actions/addslideaction.cpp
+        ActionHandler/Actions/removeitemaction.h ActionHandler/Actions/removeitemaction.cpp
+        ActionHandler/Actions/removeslideaction.h ActionHandler/Actions/removeslideaction.cpp
+        Renderer/Shapes/Shape.h
+        Renderer/Shapes/circle.h Renderer/Shapes/circle.cpp
+        Renderer/Shapes/elipse.h Renderer/Shapes/elipse.cpp
+        Renderer/Shapes/rectangle.h Renderer/Shapes/rectangle.cpp
+        Renderer/Shapes/line.h Renderer/Shapes/line.cpp
+        UserInterface/commandlineoutputlog.h UserInterface/commandlineoutputlog.cpp
+
 
 
     )

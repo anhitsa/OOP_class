@@ -1,14 +1,9 @@
 #include "item.h"
 
-Item::Item(std::string kind, Rectangle rect, ID id):
-    kind(kind), rect(rect), id(id)
+Item::Item(std::string kind, RectangleGeometry rect, ID id, std::string color, std::string text)
+    : kind(kind), rect(rect), id(id), color(color), text(text)
 {
 
-}
-
-void Item::setKind(const std::string& newKind)
-{
-    kind = newKind;
 }
 
 const std::string& Item::getKind() const
@@ -16,19 +11,29 @@ const std::string& Item::getKind() const
     return kind;
 }
 
-void Item::setId(const ID& newId)
+const std::string& Item::getColor() const
 {
-    id = newId;
+    return color;
 }
 
-void Item::setGeometry(const Rectangle& rect_)
+const std::string& Item::getText() const
 {
-    rect = rect_;
+    return text;
 }
 
 const Item::ID& Item::getId() const
 {
     return id;
+}
+
+RectangleGeometry& Item::getGeometry()
+{
+    return rect;
+}
+
+void Item::setGeometry(const RectangleGeometry& rect_)
+{
+    rect = rect_;
 }
 
 Item& Item::operator=(const Item& other)
@@ -40,11 +45,6 @@ Item& Item::operator=(const Item& other)
     rect = other.rect;
     id = other.id;
     return *this;
-}
-
-Rectangle Item::getGeometry() const
-{
-    return rect;
 }
 
 std::string Item::getInfo() const

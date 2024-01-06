@@ -14,7 +14,8 @@ public:
     void execute() override;
 
 private:
-    std::shared_ptr<Target> determineTarget();
+    void drawItem() const;
+    void drawSlide() const;
 
 private:
     std::shared_ptr<Document> document;

@@ -3,7 +3,7 @@
 std::string Serializer::serializeToJson(const std::shared_ptr<Document>& document) {
     std::string jsonResult = "{ \n  \"slides\": [";
 
-    for (const auto& slide : document->slides) {
+    for (const auto& slide : document->getSlides()) {
         jsonResult += serializeSlide(slide);
         jsonResult += ",";
     }
@@ -18,7 +18,7 @@ std::string Serializer::serializeToJson(const std::shared_ptr<Document>& documen
 std::string Serializer::serializeSlide(const std::shared_ptr<Slide>& slide) {
     std::string jsonResult = "{\n    \"targets\": [";
 
-    for (const auto& target : slide->getTargets()) {
+    for (const auto& target : slide->getItems()) {
         jsonResult += serializeItem(std::dynamic_pointer_cast<Item>(target));
         jsonResult += ",";
     }

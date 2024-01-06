@@ -28,7 +28,6 @@ public slots:
     void onSubmitClicked();
 
 private:
-    void createInputBox();
     void createSublitButton();
 
 private:

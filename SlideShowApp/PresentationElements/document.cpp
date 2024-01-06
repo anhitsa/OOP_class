@@ -1,12 +1,18 @@
 #include "document.h"
-#include "target.h"
-#include "slide.h"
 
 #include <memory>
 
-void Document::add(const std::shared_ptr<Slide>& target)
+Document::Document()
 {
-    slides.push_back(std::dynamic_pointer_cast<Slide>(target));
+    const Slide::ID firstSlideId = 1;
+    std::shared_ptr<Slide> slide = std::make_shared<Slide>(firstSlideId);
+    add(slide);
+    setActiveSlide(slide);
+}
+
+void Document::add(const std::shared_ptr<Slide>& slide)
+{
+    slides.push_back(slide);
 }
 
 void Document::remove(const std::shared_ptr<Slide>& target)
@@ -16,23 +22,30 @@ void Document::remove(const std::shared_ptr<Slide>& target)
         slides.erase(it);
 }
 
-void Document::setActiveSlide(const std::shared_ptr<Target>& slide)
+void Document::setActiveSlide(const std::shared_ptr<Slide>& slide)
 {
-    activeSlide = std::dynamic_pointer_cast<Slide>(slide);
-}
-
-std::shared_ptr<Target> Document::findItemById(const int& itemId) const
-{
-    for (const auto& slide : slides)
-    {
-        auto item = slide->findItemById(itemId);
-        if (item)
-            return item;
-    }
-    return nullptr;
+    activeSlide = slide;
 }
 
 std::shared_ptr<Slide> Document::getActiveSlide() const
 {
-    return activeSlide;
+    return std::move(activeSlide);
+}
+
+Slide::ID Document::getNewSlideId() const
+{
+    return slides.size() + 1;
+}
+
+std::vector<std::shared_ptr<Slide>>::const_iterator Document::findSlideById(const Slide::ID& slideId) const
+{
+    return std::find_if(slides.begin(), slides.end(),
+                        [slideId](const auto& slide) {
+                            return slide->getId() == slideId;
+                        });
+}
+
+std::vector<std::shared_ptr<Slide>> Document::getSlides() const
+{
+    return slides;
 }

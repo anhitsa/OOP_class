@@ -8,9 +8,7 @@ ChangeAction::ChangeAction(std::shared_ptr<Item> item, std::map<std::string, std
 
 void ChangeAction::execute()
 {
-    auto itemGeometry = item->getGeometry();
-    itemGeometry.changeParameters(options);
-    item->setGeometry(itemGeometry);
+    item->getGeometry().changeParameters(options);
 }
 
 void ChangeAction::undo()

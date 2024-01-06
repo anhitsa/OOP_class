@@ -12,7 +12,6 @@ class ChangeAction : public CommandAction
 {
 public:
     ChangeAction(std::shared_ptr<Item>, std::map<std::string, std::string>);
-
     void execute() override;
     void undo() override;
 

@@ -1,11 +1,12 @@
 #include "controller.h"
 
 Controller::Controller() : commandLineInputBox(std::make_shared<CommandLineInputBox>()),
-    commandLineOutputBox(std::make_shared<CommandLineOutputTerminal>()),
+    commandLineOutputBox(std::make_shared<CommandLineOutputLog>()),
     commandParser()
 {
     QObject::connect(commandLineInputBox.get(), &CommandLineInputBox::userInputReceived, [this](const QString& input){
-        std::unique_ptr<Command> command = commandParser.parse(input);
+        std::istringstream inputStream(input.toStdString());
+        std::unique_ptr<Command> command = commandParser.parse(inputStream);
         command->execute();
     });
 }
@@ -15,7 +16,7 @@ std::shared_ptr<CommandLineInputBox> Controller::getCommandLineInputBox() const
     return commandLineInputBox;
 }
 
-std::shared_ptr<CommandLineOutputTerminal> Controller::getCommandLineOutputBox() const
+std::shared_ptr<CommandLineOutputLog> Controller::getCommandLineOutputBox() const
 {
     return commandLineOutputBox;
 }

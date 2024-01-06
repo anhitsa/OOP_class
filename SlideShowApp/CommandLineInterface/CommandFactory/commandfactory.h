@@ -2,11 +2,10 @@
 #define COMMANDFACTORY_H
 
 #include "../Commands/command.h"
-#include "../../Director/ActionManager/actionmanager.h"
+#include "../../ActionHandler/ActionManager/actionmanager.h"
 #include "../../PresentationElements/Item/coord.h"
 #include "../../PresentationElements/document.h"
 #include "../../PresentationElements/Item/item.h"
-#include "../../PresentationElements/target.h"
 #include "../../Renderer/renderer.h"
 #include "../../Serializer/serializer.h"
 

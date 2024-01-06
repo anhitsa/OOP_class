@@ -1,18 +1,20 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLEGEOMETRY_H
+#define RECTANGLEGEOMETRY_H
 
 #include "coord.h"
 
 #include <map>
 #include <string>
 
-class Rectangle {
+class RectangleGeometry
+{
 public:
-    Rectangle(Coord topLeft, int height, int width);
-    Rectangle(Coord topLeft, Coord bottomRight);
-    Rectangle(Coord top_left, Coord bottom_right, int height, int width);
+    RectangleGeometry(Coord topLeft, int height, int width);
+    RectangleGeometry(Coord topLeft, Coord bottomRight);
+    RectangleGeometry(Coord top_left, Coord bottom_right, int height, int width);
+    RectangleGeometry(Coord top_left, int height);
 
-    Rectangle& operator=(const Rectangle& other);
+    RectangleGeometry& operator=(const RectangleGeometry& other);
 
     Coord getTopLeft() const;
     Coord getBottomRight() const;
@@ -36,4 +38,4 @@ private:
     std::map<std::string, std::variant<Coord, int>> prevParameters;
 };
 
-#endif // RECTANGLE_H
+#endif // RECTANGLEGEOMETRY_H

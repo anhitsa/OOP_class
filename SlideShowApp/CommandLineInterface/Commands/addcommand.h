@@ -3,11 +3,11 @@
 
 #include "command.h"
 #include "../../PresentationElements/document.h"
-#include "../../Director/Actions/addaction.h"
-#include "../../Director/ActionManager/actionmanager.h"
+#include "../../ActionHandler/Actions/additemaction.h"
+#include "../../ActionHandler/Actions/addslideaction.h"
+#include "../../ActionHandler/ActionManager/actionmanager.h"
 #include "../../PresentationElements/document.h"
 #include "../../PresentationElements/Item/item.h"
-#include "../../PresentationElements/Item/rectangle.h"
 
 #include <map>
 #include <memory>
@@ -22,17 +22,13 @@ public:
     void execute() override;
 
 private:
-    std::shared_ptr<Target> createTarget();
-    std::shared_ptr<Container<Target>> determineContainer(const std::shared_ptr<Target>&);
-    std::shared_ptr<Target> createItem();
+    void addItem();
+    void addSlide();
+    std::shared_ptr<Item> createItem(const Item::ID);
 
 private:
     std::shared_ptr<Document> document;
     std::shared_ptr<ActionManager> actionManager;
-    std::shared_ptr<Target> target;
-    std::shared_ptr<Container<Target>> container;
-    static int slideIdCount;
-    static int itemIdCount;
 
 };
 

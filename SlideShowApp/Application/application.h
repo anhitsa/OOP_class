@@ -3,7 +3,7 @@
 
 #include "../CommandLineInterface/Controller/controller.h"
 #include "../CommandLineInterface/CommandFactory/commandfactory.h"
-#include "../Director/ActionManager/actionmanager.h"
+#include "../ActionHandler/ActionManager/actionmanager.h"
 #include "../PresentationElements/document.h"
 #include "../UserInterface/applicationwindow.h"
 #include "../Serializer/serializer.h"

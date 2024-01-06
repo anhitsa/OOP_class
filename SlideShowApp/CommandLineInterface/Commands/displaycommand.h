@@ -14,8 +14,8 @@ public:
     void execute() override;
 
 private:
-    std::shared_ptr<Target> determineTarget();
-    std::string formDisplayableInfo(std::shared_ptr<Target>);
+    void displaySlide();
+    void displayItem();
 
 private:
     std::shared_ptr<Document> document;

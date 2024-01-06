@@ -9,25 +9,23 @@ DrawCommand::DrawCommand(std::map<std::string, std::string> options_, std::share
 
 void DrawCommand::execute()
 {
-    std::shared_ptr<Target> target = determineTarget();
-    renderer->draw(target);
+    if (options.count("item_id"))
+        drawItem();
+    else
+        drawSlide();
 }
 
-std::shared_ptr<Target> DrawCommand::determineTarget() //TK: code duplication
+void DrawCommand::drawSlide() const
 {
-    if (options.find("slide_id") != options.end())
-    {
-        int slideId = std::stoi(options.at("slide_id"));
-        auto slide = document->findSlideById<Target>(slideId);
-        if (slide)
-            return slide;
-    }
-    if (options.find("item_id") != options.end())
-    {
-        int itemId = std::stoi(options.at("item_id"));
-        auto item = document->findItemById(itemId);
-        if (item)
-            return item;
-    }
-    return document->activeSlide;
+    std::shared_ptr<Slide> slide;
+    if (options.count("slide_id"))
+        slide = *(document->findSlideById(std::stoi(options.at("slide_id"))));
+    slide = document->getActiveSlide();
+    renderer->draw(slide);
+}
+
+void DrawCommand::drawItem() const
+{
+    std::shared_ptr<Item> item = *(document->getActiveSlide()->findItemById(std::stoi(options.at("item_id"))));
+    renderer->draw(item);
 }

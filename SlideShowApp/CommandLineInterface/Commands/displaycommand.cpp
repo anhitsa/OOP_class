@@ -10,27 +10,30 @@ DisplayCommand::DisplayCommand(std::map<std::string, std::string> options_, std:
 
 void DisplayCommand::execute()
 {
-    std::shared_ptr<Target> target = determineTarget();
-    std::string targetInformation = target->getInfo();
-    renderer->display(targetInformation);
+    if (!options.count("item_id"))
+        displaySlide();
+    else
+        displayItem();
 }
 
-std::shared_ptr<Target> DisplayCommand::determineTarget()
+void DisplayCommand::displayItem()
 {
-    if (options.find("slide_id") != options.end())
+    int itemId = std::stoi(options.at("item_id"));
+    auto item = *(document->getActiveSlide()->findItemById(itemId));
+    std::string itemInformation = item->getInfo();
+    renderer->display(itemInformation);
+}
+
+void DisplayCommand::displaySlide()
+{
+    std::shared_ptr<Slide> slide;
+    if(options.count("slide_id"))
     {
         int slideId = std::stoi(options.at("slide_id"));
-        auto slide = document->findSlideById<Target>(slideId);
-        if (slide)
-            return slide;
+        slide = *(document->findSlideById(slideId));
     }
-    if (options.find("item_id") != options.end())
-    {
-        int itemId = std::stoi(options.at("item_id"));
-        auto item = document->findItemById(itemId);
-        if (item)
-            return item;
-    }
-    return document->activeSlide;
+    else
+        slide = document->getActiveSlide();
+    std::string slideInformation = slide->getInfo();
+    renderer->display(slideInformation);
 }
-

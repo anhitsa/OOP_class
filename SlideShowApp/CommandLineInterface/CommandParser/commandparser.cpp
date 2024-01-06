@@ -3,14 +3,12 @@
 #include "../../Application/application.h"
 #include "../Commands/addcommand.h"
 
-#include <optional>
 
-
-std::unique_ptr<Command> CommandParser::parse(const QString& input)
+std::unique_ptr<Command> CommandParser::parse(std::istream& inputStream)
 {
     std::shared_ptr<Application> application = Application::getInstance();
     auto commandFactory = application->getController()->getCommandFactory();
-    Tokens tokens = lexer.tokenizeInput(input);
+    Tokens tokens = lexer.tokenizeInput(inputStream);
     std::string command_name = tokens[0];
     std::map<std::string, std::string> options = extractOptions(tokens);
     return commandFactory->createCommand(command_name, options);

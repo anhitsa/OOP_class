@@ -1,27 +1,26 @@
 #ifndef SLIDE_H
 #define SLIDE_H
 
-#include "container.h"
-#include "target.h"
+#include "Item/item.h"
 
 #include <vector>
 
-//TK: Same interface is here like in doc, you can make your Container template implementation, you will need it also for the GroupItem
-class Slide : public Target, public Container<Target>
+class Slide
 {
 public:
-    Slide()=default;
-    void add(const std::shared_ptr<Target>&) override;
-    void remove(const std::shared_ptr<Target>&) override;
-    std::shared_ptr<Target> findItemById(const int&) const;
-    void setId(ID);
-    const ID& getId() const override;
-    std::string getInfo() const override;
-    std::vector<std::shared_ptr<Target>> getTargets() const;
+    using ID = int;
+    Slide(const ID);
+    void add(const std::shared_ptr<Item>&);
+    void remove(const std::shared_ptr<Item>&);
+    std::vector<std::shared_ptr<Item>>::iterator findItemById(const ID&);
+    const ID& getId() const;
+    std::string getInfo() const;
+    std::vector<std::shared_ptr<Item>> getItems() const;
+    ID getNewItemId() const;
 
 private:
-    std::vector<std::shared_ptr<Target>> targets;
-    ID id; //TK: Actually you do not need id for slodes, root item's Id can serve for slides as well
+    std::vector<std::shared_ptr<Item>> items;
+    ID id;
 
 };
 

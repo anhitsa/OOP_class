@@ -6,6 +6,7 @@
 #include "lexer.h"
 #include "../../PresentationElements/document.h"
 
+#include <optional>
 #include <map>
 #include <memory>
 #include <QString>
@@ -17,8 +18,7 @@ class CommandParser
 {
 public:
     CommandParser()=default;
-    //TK: Accept istream instead of string
-    std::unique_ptr<Command> parse(const QString&);
+    std::unique_ptr<Command> parse(std::istream&);
 
 private:
     using Tokens = std::vector<std::string>;
